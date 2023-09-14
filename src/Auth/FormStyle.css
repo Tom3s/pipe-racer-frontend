@@ -1,0 +1,13 @@
+/* { width: "30vw", height: "100vh", margin: "auto", minWidth: "500px", backgroundColor: "black" }
+ */
+
+.form_div {
+	  width: 30vw;
+  height: 100vh;
+  margin: auto;
+  min-width: 500px;
+  background-color: #000000aa;
+  box-shadow: 0 0 30px 30px #00000077;
+  padding: 20px;
+  color: whitesmoke;
+}
