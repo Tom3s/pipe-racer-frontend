@@ -70,6 +70,28 @@ export const ProfilePage = () => {
 		setSelectedFile(event.target.files[0]);
 	};
 
+	const getProfilePictureUploaders = () => {
+		return (
+			<Form onSubmit={handleSubmit}>
+					<Form.Group controlId="formFileSm" className="mb-3" >
+						<Form.Label>Update Profile Picture</Form.Label>
+						<InputGroup className="mb-3">
+							<Form.Control
+								type="file"
+								size="sm"
+								onChange={handleFileChange} // Handle file selection
+							/>
+							<Button variant="dark" type="submit"> Upload </Button>
+						</InputGroup>
+						<Form.Text muted>
+							{response}
+						</Form.Text>
+
+					</Form.Group>
+				</Form>
+		)
+	};
+
 	return (
 		<Fragment>
 			<div className="form_div" style={{
@@ -97,23 +119,12 @@ export const ProfilePage = () => {
 				}
 				<h1>{user.username}</h1>
 
-				<Form onSubmit={handleSubmit}>
-					<Form.Group controlId="formFileSm" className="mb-3" >
-						<Form.Label>Update Profile Picture</Form.Label>
-						<InputGroup className="mb-3">
-							<Form.Control
-								type="file"
-								size="sm"
-								onChange={handleFileChange} // Handle file selection
-							/>
-							<Button variant="dark" type="submit"> Upload </Button>
-						</InputGroup>
-						<Form.Text muted>
-							{response}
-						</Form.Text>
-
-					</Form.Group>
-				</Form>
+				{
+					userId === localStorage.getItem("userId") ?
+						getProfilePictureUploaders() :
+						<Fragment />
+				}
+				
 			</div>
 		</Fragment>
 	)
