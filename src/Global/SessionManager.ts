@@ -14,3 +14,11 @@ export const setLocalSessionDetails = (sessionDetails: SessionDetails) => {
 	localStorage.setItem('loginDate', sessionDetails.loginDate);
 	localStorage.setItem('profilePictureUrl', sessionDetails.profilePictureUrl);
 }
+
+export const destroyLocalSessionDetails = () => {
+	localStorage.removeItem('username');
+	localStorage.removeItem('userId');
+	localStorage.removeItem('sessionToken');
+	localStorage.removeItem('loginDate');
+	localStorage.removeItem('profilePictureUrl');
+}

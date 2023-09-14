@@ -9,10 +9,12 @@ import { ProfilePage } from './User/ProfilePage';
 import { Home } from './Home';
 import { TrackList } from './Track/TrackList';
 import { TrackPage } from './Track/TrackPage';
+import { NavigationBar } from './Elements/NavigationBar';
 
 function App() {
 	return (
 		<BrowserRouter >
+			<NavigationBar />
 			<Routes>
 				<Route path='/' element={<Navigate to="/home" />} />
 				<Route path='/home' element={<Home />} /> 

@@ -10,6 +10,7 @@ export const TrackPage = () => {
 	const [track, setTrack] = useState({} as any);
 	const [times, setTimes] = useState([] as any);
 	const [laps, setLaps] = useState([] as any);
+	const [responseText, setResponseText] = useState("");
 
 	const [loadingTrack, setLoadingTrack] = useState(true);
 	const [loadingTimes, setLoadingTimes] = useState(true);
@@ -26,21 +27,43 @@ export const TrackPage = () => {
 		setLoadingLaps(true);
 
 		fetch(TRACKS_URL(trackId))
-			.then(response => response.json())
+			.then(async response => {
+				if (response.status !== 200) {
+					setLoadingTrack(false);
+					setResponseText(await response.text());
+					return {} as any;
+				}
+				return response.json();
+			})
 			.then(data => {
 				setTrack(data);
 				setLoadingTrack(false);
+				console.log(data);
 			});
 		
 		fetch(LEADERBOARD_URL(trackId))
-			.then(response => response.json())
+			.then(async response => {
+				if (response.status !== 200) {
+					setLoadingTimes(false);
+					// setResponseText(await response.text());
+					return [];
+				}
+				return response.json();
+			})
 			.then(data => {
 				setTimes(data);
 				setLoadingTimes(false);
 			});
 
 		fetch(LEADERBOARD_LAPS_URL(trackId))
-			.then(response => response.json())
+			.then(async response => {
+				if (response.status !== 200) {
+					setLoadingLaps(false);
+					// setResponseText(await response.text());
+					return [];
+				}
+				return response.json()
+			})
 			.then(data => {
 				setLaps(data);
 				setLoadingLaps(false);
@@ -61,7 +84,7 @@ export const TrackPage = () => {
 					</tr>
 				</thead>
 				<tbody>
-					{times.map((time: any, index: number) => {
+					{times?.map((time: any, index: number) => {
 						return (
 							<tr key={index}>
 								<td>{index + 1}</td>
@@ -81,22 +104,29 @@ export const TrackPage = () => {
 	const getMainContent = () => {
 		return (
 			<Fragment>
-				<h1>{track.name}</h1>
-				<h2>by: {track.author.username}</h2>
+				{
+					responseText !== "" ?
+						<h1>{responseText}</h1> :
+				<Fragment>
+
+				
+				<h1>{track?.name}</h1>
+				<h2>by: {track?.author.username}</h2>
 				<hr />
 				<div style={{
 					display: "flex",
 					flexDirection: "row",
 					justifyContent: "space-between",
 				}}>
-				<span>Rating: {track.rating}/5 - Downloads: {track.downloads}</span>
-				<span>Uploaded: {track.uploadDate.split('T')[0]}</span>
+				<span>Rating: {track?.rating}/5 - Downloads: {track?.downloads}</span>
+				<span>Uploaded: {track?.uploadDate.split('T')[0]}</span>
 				</div>
 				<hr />
 
 				<h3>Leaderboard</h3>
 				{getTimeLeaderBoard()}
-
+				</Fragment>
+	}
 			</Fragment>
 		)
 	};
@@ -106,7 +136,7 @@ export const TrackPage = () => {
 			width: "80vw",
 		}}>
 			{
-				!loadingTimes && !loadingTrack ?
+				!loadingTimes && !loadingTrack && !loadingLaps ?
 					getMainContent() :
 					<h1>Loading...</h1>
 			}

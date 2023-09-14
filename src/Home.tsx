@@ -15,9 +15,6 @@ export const Home = () => {
 			}}>
 			<Title />
 			Under Construction...
-			<a href={"/profile?id=" + localStorage.getItem("userId")}>Profile</a>
-			<Button className="form_button" variant="dark" href="/login" >Login</Button>
-			<Button className="form_button" variant="dark" href="/register">Register</Button>
 			</div>
 		</Fragment>
 	)
