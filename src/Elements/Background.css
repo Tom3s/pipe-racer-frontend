@@ -8,7 +8,7 @@
 	width: 100%;
 	height: 100%;
 	z-index: -1; /* Place it behind other content */
-	animation: colorChange 10s linear infinite, moveTexture 20s linear infinite; /* Animation for color change and texture movement */
+	animation: colorChange 60s alternate infinite, moveTexture 35s alternate infinite ease-in-out; /* Animation for color change and texture movement */
 	background-color: #1a1a1a; /* Dark background color */
 	background-image: url('https://img.freepik.com/premium-vector/grunge-halftone-vector-background_1095-615.jpg?w=996'); /* Replace 'texture.png' with your texture image */
 	background-blend-mode: darken; /* Apply the darken blend mode */

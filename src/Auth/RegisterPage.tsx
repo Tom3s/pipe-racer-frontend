@@ -140,7 +140,7 @@ export const RegisterPage = () => {
 						{getPasswordField()}
 						<div style={{ display: "flex", flexDirection: "row", justifyContent: "space-between", marginTop: "10px" }}>
 							<a href="/login">Already have an account?</a>
-							<Button variant="primary" type="submit" disabled={(password == "" || !validPassword) || (username == "" || !validUsername) || (email == "" || !validEmail)}>
+							<Button variant="dark" type="submit" disabled={(password == "" || !validPassword) || (username == "" || !validUsername) || (email == "" || !validEmail)}>
 								Register
 							</Button>
 						</div>
