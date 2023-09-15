@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/pipe-racer/static/css/main.b9433cf9.css",
+    "main.js": "/pipe-racer/static/js/main.d990953a.js",
+    "static/js/787.b6f1764a.chunk.js": "/pipe-racer/static/js/787.b6f1764a.chunk.js",
+    "static/media/New-Rodin.otf": "/pipe-racer/static/media/New-Rodin.56d55b0a5b6386173d4e.otf",
+    "index.html": "/pipe-racer/index.html",
+    "main.b9433cf9.css.map": "/pipe-racer/static/css/main.b9433cf9.css.map",
+    "main.d990953a.js.map": "/pipe-racer/static/js/main.d990953a.js.map",
+    "787.b6f1764a.chunk.js.map": "/pipe-racer/static/js/787.b6f1764a.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.b9433cf9.css",
+    "static/js/main.d990953a.js"
+  ]
+}
