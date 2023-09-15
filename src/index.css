@@ -22,3 +22,14 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+a {
+	color: #aabbcc !important;
+	transition: 0.3s;
+}
+
+a:hover {
+	color: #597272 !important;
+	transition: 0.3s;
+	cursor: pointer;
+}
