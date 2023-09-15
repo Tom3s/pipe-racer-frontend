@@ -15,6 +15,35 @@ export const NavigationBar = () => {
                 <Container>
                     {/* <UserDetailsOffCanvas /> */}
                     <Navbar.Brand href="/home">PIPE RACER</Navbar.Brand>
+					<div style={{
+						display: "flex",
+						flexDirection: "row",
+						alignItems: "center",
+						justifyContent: "center",
+					}}>
+					<Button variant="dark"
+					style={{
+						marginRight: "10px",
+						fontSize: "22px",
+						padding: "0px",
+						width: "40px",
+						height: "40px",
+					}}
+					onClick={() => window.open(
+						"https://github.com/Tom3s/pipe-racer/releases/download/map-editor-beta/PipeRacerMapBuilderBeta.exe"
+					)}><i className="fa fa-download" /></Button>
+					<Button variant="dark"
+					style={{
+						marginRight: "10px",
+						fontSize: "22px",
+						padding: "0px",
+						width: "40px",
+						height: "40px",
+					}}
+					onClick={() => window.open(
+						"https://github.com/Tom3s/pipe-racer/releases"
+					)}><i className="fa fa-github" /></Button>
+					</div>
                     <Navbar.Toggle />
 
 					<Nav.Link href="/tracks">Tracks</Nav.Link>

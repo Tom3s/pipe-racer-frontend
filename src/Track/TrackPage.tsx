@@ -117,7 +117,7 @@ export const TrackPage = () => {
 					</tr>
 				</thead>
 				<tbody>
-					{times?.map((time: any, index: number) => {
+					{laps?.map((time: any, index: number) => {
 						return (
 							<tr key={index}>
 								<td>{index + 1}</td>
