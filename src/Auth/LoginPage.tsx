@@ -88,7 +88,7 @@ export const LoginPage = () => {
 							</InputGroup>
 						</Form.Group>
 						<div style={{ display: "flex", flexDirection: "row", justifyContent: "space-between", marginTop: "10px" }}>
-							<a href="/register">Don't have an account?</a>
+							<a onClick={() => navigate("/register")}>Don't have an account?</a>
 							<Button variant="dark" type="submit">
 								Login
 							</Button>

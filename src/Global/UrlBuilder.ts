@@ -1,5 +1,4 @@
-// const baseUrl = 'http://localhost:80/api'
-const baseUrl = 'http://192.168.125.195:80/api'
+const baseUrl = 'http://34.159.46.241:80/api'
 
 export const LOGIN_URL = baseUrl + '/auth/login';
 export const REGISTER_URL = baseUrl + '/auth/register';

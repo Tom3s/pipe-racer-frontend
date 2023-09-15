@@ -14,7 +14,7 @@ export const NavigationBar = () => {
             <Navbar bg="black" variant="dark" sticky="top">
                 <Container>
                     {/* <UserDetailsOffCanvas /> */}
-                    <Navbar.Brand href="/home">PIPE RACER</Navbar.Brand>
+                    <Navbar.Brand onClick={() => navigate("/home")}>PIPE RACER</Navbar.Brand>
 					<div style={{
 						display: "flex",
 						flexDirection: "row",
@@ -30,7 +30,7 @@ export const NavigationBar = () => {
 						height: "40px",
 					}}
 					onClick={() => window.open(
-						"https://github.com/Tom3s/pipe-racer/releases/download/map-editor-beta/PipeRacerMapBuilderBeta.exe"
+						"https://github.com/Tom3s/pipe-racer/releases/download/v0.23/PipeRacer-v0.23.exe"
 					)}><i className="fa fa-download" /></Button>
 					<Button variant="dark"
 					style={{
@@ -46,12 +46,12 @@ export const NavigationBar = () => {
 					</div>
                     <Navbar.Toggle />
 
-					<Nav.Link href="/tracks">Tracks</Nav.Link>
+					<Nav.Link onClick={() => navigate("/tracks")}>Tracks</Nav.Link>
 
                     {
                         localStorage.getItem('sessionToken') !== null &&
                         <Navbar.Text>
-                            Signed in as: <a href={"/profile?id=" + localStorage.getItem('userId')}>{localStorage.getItem('username')}</a>
+                            Signed in as: <a onClick={() => navigate("/profile?id=" + localStorage.getItem('userId'))}>{localStorage.getItem('username')}</a>
                         </Navbar.Text>
                     }
                     {

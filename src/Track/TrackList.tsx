@@ -42,10 +42,10 @@ export const TrackList = () => {
 							<tr key={index}>
 								<td>{index + 1}</td>
 								<td>
-									<a href={'/track?id=' + track._id}>{track.name}</a>
+									<a onClick={() => navigate('/track?id=' + track._id)}>{track.name}</a>
 								</td>
 								<td>
-									<a href={"/profile?id=" + track.author._id}>{track.author.username}</a>
+									<a onClick={() => navigate("/profile?id=" + track.author._id)}>{track.author.username}</a>
 								</td>
 								<td>{track.rating}</td>
 								<td>{track.downloads}</td>

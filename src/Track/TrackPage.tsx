@@ -93,7 +93,7 @@ export const TrackPage = () => {
 							<tr key={index}>
 								<td>{index + 1}</td>
 								<td>
-									<a href={"/profile?id=" + time.user._id}>{time.user.username}</a>
+									<a onClick={() => navigate("/profile?id=" + time.user._id)}>{time.user.username}</a>
 								</td>
 								<td>{timeStringFromTicks(time.time)}</td>
 								<td>{time.date.split('T')[0]}</td>
@@ -122,7 +122,7 @@ export const TrackPage = () => {
 							<tr key={index}>
 								<td>{index + 1}</td>
 								<td>
-									<a href={"/profile?id=" + time.user._id}>{time.user.username}</a>
+									<a onClick={() => navigate("/profile?id=" + time.user._id)}>{time.user.username}</a>
 								</td>
 								<td>{timeStringFromTicks(time.bestLap)}</td>
 								<td>{time.date.split('T')[0]}</td>
