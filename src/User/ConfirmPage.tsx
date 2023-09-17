@@ -24,7 +24,6 @@ export const ConfirmPage = () => {
 				setShowLogin(response.status === 200);
 				const text = await response.text();
 				setResponseText(text);
-				console.log(text);
 			})
 	}, [registrationToken]);
 

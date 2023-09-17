@@ -51,7 +51,6 @@ export const LoginPage = () => {
 	}
 
 	useEffect(() => {
-		console.log(sessionDetails);
 		if (sessionDetails.sessionToken) {
 			setLocalSessionDetails(sessionDetails);
 		}

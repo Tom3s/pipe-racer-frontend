@@ -42,7 +42,6 @@ export const TrackPage = () => {
 			.then(data => {
 				setTrack(data);
 				setLoadingTrack(false);
-				console.log(data);
 			});
 
 		fetch(LEADERBOARD_URL(trackId))
