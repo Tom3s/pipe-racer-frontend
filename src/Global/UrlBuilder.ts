@@ -1,4 +1,4 @@
-const baseUrl = 'http://34.159.46.241:80/api'
+const baseUrl = 'https://34.159.46.241:443/api'
 
 export const LOGIN_URL = baseUrl + '/auth/login';
 export const REGISTER_URL = baseUrl + '/auth/register';
