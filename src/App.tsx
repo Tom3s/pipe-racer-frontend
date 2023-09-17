@@ -10,6 +10,7 @@ import { Home } from './Home';
 import { TrackList } from './Track/TrackList';
 import { TrackPage } from './Track/TrackPage';
 import { NavigationBar } from './Elements/NavigationBar';
+import { ConfirmPage } from './User/ConfirmPage';
 
 function App() {
 	return (
@@ -23,6 +24,7 @@ function App() {
 				<Route path='/profile' element={<ProfilePage />} /> 
 				<Route path='/tracks' element={<TrackList />} /> 
 				<Route path='/track' element={<TrackPage />} />
+				<Route path='/confirm' element={<ConfirmPage />} /> 
 			</Routes>
 			<Background />
 		</BrowserRouter>
