@@ -30,7 +30,7 @@ export const NavigationBar = () => {
 						height: "40px",
 					}}
 					onClick={() => window.open(
-						"https://github.com/Tom3s/pipe-racer/releases/download/v0.23/PipeRacer-v0.23.exe"
+						"https://github.com/Tom3s/pipe-racer/releases/download/v0.24/PipeRacer-v0.24.exe"
 					)}><i className="fa fa-download" /></Button>
 					<Button variant="dark"
 					style={{

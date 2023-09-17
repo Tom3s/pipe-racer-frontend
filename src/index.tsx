@@ -9,12 +9,12 @@ const root = ReactDOM.createRoot(
 	document.getElementById('root') as HTMLElement
 );
 root.render(
-	//   <React.StrictMode>
-	<Fragment>
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
-		<App />
-	</Fragment>
-	//   </React.StrictMode>
+	// <React.StrictMode>
+		<Fragment>
+			<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+			<App />
+		</Fragment>
+	// </React.StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function
