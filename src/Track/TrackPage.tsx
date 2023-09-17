@@ -1,5 +1,5 @@
 import { Fragment, useEffect, useState } from "react";
-import { LEADERBOARD_LAPS_URL, LEADERBOARD_URL, TRACKS_URL } from "../Global/UrlBuilder";
+import { LEADERBOARD_LAPS_URL, LEADERBOARD_URL, RATE_URL, TRACKS_URL } from "../Global/UrlBuilder";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { Button, Form, Table, ToggleButton, ToggleButtonGroup } from "react-bootstrap";
 import { timeStringFromTicks } from "../Global/TimeStringFromTicks";
@@ -103,7 +103,7 @@ export const TrackPage = () => {
 			</Table>
 		)
 	}
-	
+
 	const getLapLeaderBoard = () => {
 		return (
 			<Table striped bordered hover variant="dark">
@@ -135,12 +135,101 @@ export const TrackPage = () => {
 
 	const getRadioButtons = () => {
 		return (
-			<ToggleButtonGroup type="radio" name="options" defaultValue={listType} style={{margin: "10px"}}>
+			<ToggleButtonGroup type="radio" name="options" defaultValue={listType} style={{ margin: "10px" }}>
 				<ToggleButton variant="outline-secondary" id="tbg-radio-1" value={1} onClick={() => setListType(1)}>Total Times</ToggleButton>
 				<ToggleButton variant="outline-secondary" id="tbg-radio-2" value={2} onClick={() => setListType(2)}>Best Laps</ToggleButton>
 			</ToggleButtonGroup>
 		)
 	};
+
+	const [rating, setRating] = useState<number | null>(3);
+
+	const possibleRatings = [0, 1, 2, 3, 4, 5];
+	const ratingColors = [
+		"#CC0000",
+		"#FFAAAA",
+		"#FFFFAA",
+		"#AAFFAA",
+		"#AAFFFF",
+		"#AAAAFF",
+	]
+
+	const handleRatingClick = (selectedRating: number) => {
+		// Toggle the selected rating
+		if (rating === selectedRating) {
+			setRating(null);
+		} else {
+			setRating(selectedRating);
+		}
+	};
+
+	const handleRateSubmit = () => {
+		fetch(RATE_URL(trackId), {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+				"Session-Token": localStorage.getItem("sessionToken") || ""
+			},
+			body: JSON.stringify({
+				rating: rating
+			})
+		})
+			.then(async (res) => {
+				if (res.status === 200) {
+					setTrack({
+						...track,
+						rating: (await res.json()).rating,
+					});
+				}
+			});
+	};
+
+	const getRateComponent = () => {
+		return (
+			<Fragment>
+				<hr />
+				<div className="track-rating"
+					style={{
+						display: "flex",
+						flexDirection: "row",
+						alignItems: "center",
+						justifyContent: "space-evenly",
+					}}
+				>
+					<h3>Rate this track:</h3>
+					<div style={{
+						display: "flex",
+						alignItems: "center",
+						justifyContent: "center",
+					}}>
+
+						<h3>
+							<div>
+								{possibleRatings.map((number) => (
+									<span
+										key={number}
+										// className={`rating-star ${rating && rating >= number ? "active" : ""}`}
+										style={{
+											color: rating !== null && rating >= number ? ratingColors[number] : "gray",
+											cursor: "pointer",
+											margin: "3px",
+										}}
+										onClick={() => handleRatingClick(number)}
+									>
+										{number}
+									</span>
+								))}
+							</div>
+						</h3>
+						<Button onClick={handleRateSubmit} variant="dark" style={{ marginLeft: "20px" }} >
+							Rate
+						</Button>
+					</div>
+				</div>
+			</Fragment>
+		);
+	};
+
 
 	const getMainContent = () => {
 		return (
@@ -188,6 +277,11 @@ export const TrackPage = () => {
 									getTimeLeaderBoard() :
 									getLapLeaderBoard()
 							}
+							{
+								localStorage.getItem("userId") !== null &&
+								getRateComponent()
+							}
+							
 						</Fragment>
 				}
 			</Fragment>
