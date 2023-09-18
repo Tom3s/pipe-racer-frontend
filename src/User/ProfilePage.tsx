@@ -18,6 +18,8 @@ export const ProfilePage = () => {
 	const [profilePictureUrl, setProfilePictureUrl] = useState("");
 	const [userStats, setUserStats] = useState({} as any);
 
+	const [found, setFound] = useState(false);
+
 	const [redirect, setRedirect] = useState(<Fragment />);
 
 	useEffect(() => {
@@ -39,9 +41,10 @@ export const ProfilePage = () => {
 				.then(data => {
 					setUser(data);
 					setLoading(false);
+					setFound(data.username !== undefined);
 					setProfilePictureUrl(data.profilePictureUrl);
 				});
-			
+
 			fetch(USER_STATS_URL(userId))
 				.then(response => response.json())
 				.then(data => {
@@ -76,7 +79,7 @@ export const ProfilePage = () => {
 				}
 
 				setResponse(await res.text());
-					
+
 			});
 	};
 
@@ -87,30 +90,30 @@ export const ProfilePage = () => {
 	const getProfilePictureUploaders = () => {
 		return (
 			<Form onSubmit={handleSubmit}>
-					<Form.Group controlId="formFileSm" className="mb-3" >
-						<Form.Label>Update Profile Picture</Form.Label>
-						<InputGroup className="mb-3">
-							<Form.Control
-								type="file"
-								size="sm"
-								onChange={handleFileChange} // Handle file selection
-							/>
-							<Button variant="dark" type="submit"> Upload </Button>
-						</InputGroup>
-						<Form.Text muted>
-							{response}
-						</Form.Text>
+				<Form.Group controlId="formFileSm" className="mb-3" >
+					<Form.Label>Update Profile Picture</Form.Label>
+					<InputGroup className="mb-3">
+						<Form.Control
+							type="file"
+							size="sm"
+							onChange={handleFileChange} // Handle file selection
+						/>
+						<Button variant="dark" type="submit"> Upload </Button>
+					</InputGroup>
+					<Form.Text muted>
+						{response}
+					</Form.Text>
 
-					</Form.Group>
-				</Form>
+				</Form.Group>
+			</Form>
 		)
 	};
-	
+
 	const getHours = (minutes: number): string => {
 		const hours = minutes / 60;
 		if (hours <= 5) {
 			return hours.toFixed(2) + " h";
-		} 
+		}
 		return hours.toFixed(0) + " h";
 	}
 
@@ -162,35 +165,34 @@ export const ProfilePage = () => {
 				alignItems: "center",
 
 			}}>
-				{/* <img src={user.profilePictureUrl} alt="Profile Picture" style={{
-					width: "200px",
-					height: "200px",
-					borderRadius: "5%",
-					marginBottom: "20px"
-				}} /> */}
 				{
 					loading ?
 						<Fragment /> :
-						<Image src={profilePictureUrl} style={{
-							width: "200px",
-							height: "200px",
-							borderRadius: "5%",
-							marginBottom: "20px"
-						}} />
-				}
-				<h1>{user.username}{
-					user?.guest &&
-					" (Guest)"
-				}</h1>
+						found ?
+							<Fragment>
+								<Image src={profilePictureUrl} style={{
+									width: "200px",
+									height: "200px",
+									borderRadius: "5%",
+									marginBottom: "20px"
+								}} />
 
-				{
-					userId === localStorage.getItem("userId") ?
-						getProfilePictureUploaders() :
-						<Fragment />
-				}
+								<h1>{user.username}{
+									user?.guest &&
+									" (Guest)"
+								}</h1>
 
-				{getProfileStats()}
-				
+								{
+									userId === localStorage.getItem("userId") ?
+										getProfilePictureUploaders() :
+										<Fragment />
+								}
+
+								{getProfileStats()}
+							</Fragment>
+							:
+							<h1>User not found</h1>
+				}
 			</div>
 		</Fragment>
 	)
