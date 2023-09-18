@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/pipe-racer-frontend/static/css/main.3e494c85.css",
-    "main.js": "/pipe-racer-frontend/static/js/main.ac0c2ce4.js",
-    "static/js/787.b6f1764a.chunk.js": "/pipe-racer-frontend/static/js/787.b6f1764a.chunk.js",
-    "static/media/New-Rodin.otf": "/pipe-racer-frontend/static/media/New-Rodin.56d55b0a5b6386173d4e.otf",
-    "index.html": "/pipe-racer-frontend/index.html",
-    "main.3e494c85.css.map": "/pipe-racer-frontend/static/css/main.3e494c85.css.map",
-    "main.ac0c2ce4.js.map": "/pipe-racer-frontend/static/js/main.ac0c2ce4.js.map",
-    "787.b6f1764a.chunk.js.map": "/pipe-racer-frontend/static/js/787.b6f1764a.chunk.js.map"
+    "main.css": "/static/css/main.d435dea2.css",
+    "main.js": "/static/js/main.e31541ba.js",
+    "static/js/787.b6f1764a.chunk.js": "/static/js/787.b6f1764a.chunk.js",
+    "static/media/New-Rodin.otf": "/static/media/New-Rodin.56d55b0a5b6386173d4e.otf",
+    "index.html": "/index.html",
+    "main.d435dea2.css.map": "/static/css/main.d435dea2.css.map",
+    "main.e31541ba.js.map": "/static/js/main.e31541ba.js.map",
+    "787.b6f1764a.chunk.js.map": "/static/js/787.b6f1764a.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.3e494c85.css",
-    "static/js/main.ac0c2ce4.js"
+    "static/css/main.d435dea2.css",
+    "static/js/main.e31541ba.js"
   ]
 }
