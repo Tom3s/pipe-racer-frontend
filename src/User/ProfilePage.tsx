@@ -1,11 +1,13 @@
 import { Fragment, useEffect, useState } from "react";
-import { Navigate, useNavigate, useSearchParams } from "react-router-dom";
+import { Navigate, useLocation, useNavigate, useSearchParams } from "react-router-dom";
 import { PROFILE_PICTURE_URL, UPLOAD_PROFILE_PICTURE_URL, USER_URL } from "../Global/UrlBuilder";
 import { Button, Form, Image, InputGroup } from "react-bootstrap";
 
 export const ProfilePage = () => {
 
 	const navigate = useNavigate();
+
+	const location = useLocation();
 
 	const [searchParams, setSearchParams] = useSearchParams();
 	const [userId, setUserId] = useState(searchParams.get("id") || "");
@@ -24,6 +26,10 @@ export const ProfilePage = () => {
 			}, 3000);
 		}
 	}, []);
+
+	useEffect(() => {
+		setUserId(searchParams.get("id") || "");
+	}, [location]);
 
 	useEffect(() => {
 		if (userId !== "") {
