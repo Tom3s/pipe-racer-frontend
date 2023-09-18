@@ -230,6 +230,42 @@ export const TrackPage = () => {
 		);
 	};
 
+	const deleteTrack = () => {
+		const answer = window.confirm("Are you sure you want to delete this track? \nThis action cannot be undone.");
+		// console.log(answer);
+		if (answer) {
+			fetch(TRACKS_URL(trackId), {
+				method: "DELETE",
+				headers: {
+					"Content-Type": "application/json",
+					"Session-Token": localStorage.getItem("sessionToken") || ""
+				},
+			})
+				.then(async (res: any) => {
+					if (res.status === 200) {
+						alert(await res.text())
+						navigate("/tracks");
+					} else {
+						alert(await res.text())
+					}
+				});
+		}
+	} 
+
+	const getDeleteButton = () => {
+		return (
+			localStorage.getItem("userId") === track?.author._id ?
+			<Button variant="danger" onClick={deleteTrack}style={{
+				height: "fit-content",
+				marginRight: "10px",
+			}}>
+				Delete Track
+			</Button>
+			:
+			<Fragment />
+		)
+	} 
+
 
 	const getMainContent = () => {
 		return (
@@ -244,7 +280,11 @@ export const TrackPage = () => {
 								flexDirection: "row",
 								justifyContent: "space-between",
 							}}>
-								<h1>{track?.name}</h1>
+								<h1	style={{
+									flexGrow: 1,
+								}}
+								>{track?.name}</h1>
+								{getDeleteButton()}
 								<Button variant="dark" onClick={() => navigate("/tracks")} style={{
 									height: "fit-content",
 								}}>
