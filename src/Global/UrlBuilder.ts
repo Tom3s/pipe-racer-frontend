@@ -1,4 +1,4 @@
-const baseUrl = 'https://34.159.46.241:443/api'
+const baseUrl = window.location.protocol + '//34.159.46.241/api'
 // const baseUrl = 'https://localhost:443/api';
 
 export const LOGIN_URL = baseUrl + '/auth/login';
