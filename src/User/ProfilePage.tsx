@@ -49,7 +49,6 @@ export const ProfilePage = () => {
 				.then(response => response.json())
 				.then(data => {
 					setUserStats(data);
-					console.log(data);
 				});
 		}
 	}, [userId]);
@@ -145,7 +144,7 @@ export const ProfilePage = () => {
 				<hr />
 				<p>Ingame Playtime: {getHours(userStats.ingamePlaytime)}</p>
 				<p>Total Attempts: {userStats.totalAttempts}</p>
-				<p>Most Played Track: <a onClick={() => navigate("/track?id=" + userStats.mostPlayedTrack)}>{userStats.mostPlayedTrack}</a></p>
+				<p>Most Played Track: <a onClick={() => navigate("/track?id=" + userStats.mostPlayedTrack._id)}>{userStats.mostPlayedTrack?.name}</a></p>
 				<p>Total Finishes: {userStats.totalFinishes}</p>
 				<hr />
 				<p>Editor Playtime: {getHours(userStats.editorPlaytime)}</p>
