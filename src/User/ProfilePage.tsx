@@ -1,6 +1,6 @@
 import { Fragment, useEffect, useState } from "react";
 import { Navigate, useLocation, useNavigate, useSearchParams } from "react-router-dom";
-import { PROFILE_PICTURE_URL, UPLOAD_PROFILE_PICTURE_URL, USER_URL } from "../Global/UrlBuilder";
+import { PROFILE_PICTURE_URL, UPLOAD_PROFILE_PICTURE_URL, USER_STATS_URL, USER_URL } from "../Global/UrlBuilder";
 import { Button, Form, Image, InputGroup } from "react-bootstrap";
 
 export const ProfilePage = () => {
@@ -16,6 +16,7 @@ export const ProfilePage = () => {
 	const [selectedFile, setSelectedFile] = useState(null);
 	const [response, setResponse] = useState("");
 	const [profilePictureUrl, setProfilePictureUrl] = useState("");
+	const [userStats, setUserStats] = useState({} as any);
 
 	const [redirect, setRedirect] = useState(<Fragment />);
 
@@ -39,6 +40,13 @@ export const ProfilePage = () => {
 					setUser(data);
 					setLoading(false);
 					setProfilePictureUrl(data.profilePictureUrl);
+				});
+			
+			fetch(USER_STATS_URL(userId))
+				.then(response => response.json())
+				.then(data => {
+					setUserStats(data);
+					console.log(data);
 				});
 		}
 	}, [userId]);
@@ -97,6 +105,53 @@ export const ProfilePage = () => {
 				</Form>
 		)
 	};
+	
+	const getHours = (minutes: number): string => {
+		const hours = minutes / 60;
+		if (hours <= 5) {
+			return hours.toFixed(2) + " h";
+		} 
+		return hours.toFixed(0) + " h";
+	}
+
+	const getProfileStats = () => {
+		// {
+		// 	"user": "6508760967ee3315fb640e81",
+		// 	"mostPlayedTrack": null,
+		// 	"totalPlaytime": 0,
+		// 	"ingamePlaytime": 0,
+		// 	"editorPlaytime": 0,
+		// 	"tracksUploaded": 0,
+		// 	"tracksPlayed": 0,
+		// 	"tracksRated": 0,
+		// 	"totalAttempts": 0,
+		// 	"totalFinishes": 0
+		// }
+		return (
+			<div style={{
+				display: "flex",
+				flexDirection: "column",
+				// alignItems: "start",
+				// justifyContent: "center",
+				backgroundColor: "rgba(255, 255, 255, 0.05)",
+				padding: "10px",
+				borderRadius: "10px",
+			}}>
+				<h3>Stats</h3>
+				<p>Total Playtime: {getHours(userStats.totalPlaytime)}</p>
+				<hr />
+				<p>Ingame Playtime: {getHours(userStats.ingamePlaytime)}</p>
+				<p>Total Attempts: {userStats.totalAttempts}</p>
+				<p>Most Played Track: <a onClick={() => navigate("/track?id=" + userStats.mostPlayedTrack)}>{userStats.mostPlayedTrack}</a></p>
+				<p>Total Finishes: {userStats.totalFinishes}</p>
+				<hr />
+				<p>Editor Playtime: {getHours(userStats.editorPlaytime)}</p>
+				<p>Tracks Uploaded: {userStats.tracksUploaded}</p>
+				<p>Tracks Played: {userStats.tracksPlayed}</p>
+				<p>Tracks Rated: {userStats.tracksRated}</p>
+			</div>
+		)
+	};
 
 	return (
 		<Fragment>
@@ -123,13 +178,18 @@ export const ProfilePage = () => {
 							marginBottom: "20px"
 						}} />
 				}
-				<h1>{user.username}</h1>
+				<h1>{user.username}{
+					user?.guest &&
+					" (Guest)"
+				}</h1>
 
 				{
 					userId === localStorage.getItem("userId") ?
 						getProfilePictureUploaders() :
 						<Fragment />
 				}
+
+				{getProfileStats()}
 				
 			</div>
 		</Fragment>

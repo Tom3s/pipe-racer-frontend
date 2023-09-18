@@ -11,3 +11,4 @@ export const LEADERBOARD_URL = (id: string = "") => baseUrl + '/leaderboard/' + 
 export const LEADERBOARD_LAPS_URL = (id: string = "") => baseUrl + '/leaderboard/' + id + '?sortByLap=true';
 export const CONFIRM_EMAIL_URL = (token: string) => baseUrl + '/auth/confirm?token=' + token;
 export const RATE_URL = (id: string) => baseUrl + '/ratings/' + id;
+export const USER_STATS_URL = (id: string) => baseUrl + '/stats/user/' + id;
