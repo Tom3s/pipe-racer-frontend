@@ -69,6 +69,7 @@ export const RegisterPage = () => {
 			.then(response => response.text())
 			.then(data => {
 				setToken(data);
+				alert(data);
 			});
 
 		setUsername("");
