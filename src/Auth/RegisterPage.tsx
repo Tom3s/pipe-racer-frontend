@@ -24,7 +24,7 @@ export const RegisterPage = () => {
 
 	const validatePassword = (): boolean => {
 		// one uppercase, one lowercase, and one special character
-		const regex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*[\d@$!%*#?&._-,])[A-Za-z\d@$!%*#?&._-,]{8,}$/;
+		const regex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*[\d@$!%*#?&._\-,])[A-Za-z\d@$!%*#?&._\-,]{8,}$/;
 		return regex.test(password);
 	}
 
