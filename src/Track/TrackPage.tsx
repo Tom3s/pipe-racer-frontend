@@ -176,6 +176,7 @@ export const TrackPage = () => {
 		})
 			.then(async (res) => {
 				if (res.status === 200) {
+					alert("You have rated this track " + rating);
 					setTrack({
 						...track,
 						rating: (await res.json()).rating,
