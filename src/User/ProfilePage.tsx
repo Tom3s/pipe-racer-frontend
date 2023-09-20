@@ -110,7 +110,7 @@ export const ProfilePage = () => {
 
 	const getHours = (minutes: number): string => {
 		const hours = minutes / 60;
-		if (hours <= 5) {
+		if (hours <= 10) {
 			return hours.toFixed(2) + " h";
 		}
 		return hours.toFixed(0) + " h";
@@ -143,13 +143,14 @@ export const ProfilePage = () => {
 				<p>Total Playtime: {getHours(userStats.totalPlaytime)}</p>
 				<hr />
 				<p>Ingame Playtime: {getHours(userStats.ingamePlaytime)}</p>
-				<p>Total Attempts: {userStats.totalAttempts}</p>
 				<p>Most Played Track: <a onClick={() => navigate("/track?id=" + userStats.mostPlayedTrack._id)}>{userStats.mostPlayedTrack?.name}</a></p>
+				<p>Total Attempts: {userStats.totalAttempts}</p>
 				<p>Total Finishes: {userStats.totalFinishes}</p>
+				<p>Tracks Played: {userStats.tracksPlayed}</p>
 				<hr />
 				<p>Editor Playtime: {getHours(userStats.editorPlaytime)}</p>
+				<p>Total Objects Placed: {userStats.placedAll}</p>
 				<p>Tracks Uploaded: {userStats.tracksUploaded}</p>
-				<p>Tracks Played: {userStats.tracksPlayed}</p>
 				<p>Tracks Rated: {userStats.tracksRated}</p>
 			</div>
 		)
