@@ -29,9 +29,8 @@ export const NavigationBar = () => {
 						width: "40px",
 						height: "40px",
 					}}
-					onClick={() => window.open(
-						"https://github.com/Tom3s/pipe-racer/releases/latest/download/PipeRacer.exe"
-					)}><i className="fa fa-download" /></Button>
+					href="https://github.com/Tom3s/pipe-racer/releases/latest/download/PipeRacer.exe"
+					><i className="fa fa-download" /></Button>
 					<Button variant="dark"
 					style={{
 						marginRight: "10px",
@@ -40,13 +39,15 @@ export const NavigationBar = () => {
 						width: "40px",
 						height: "40px",
 					}}
-					onClick={() => window.open(
-						"https://github.com/Tom3s/pipe-racer/releases"
-					)}><i className="fa fa-github" /></Button>
+					href="https://github.com/Tom3s/pipe-racer/releases"
+					><i className="fa fa-github" /></Button>
 					</div>
                     <Navbar.Toggle />
 
 					<Nav.Link onClick={() => navigate("/tracks")}>Tracks</Nav.Link>
+					<Nav.Link 
+					href="https://github.com/Tom3s/pipe-racer-frontend/blob/main/src/StaticPages/EditorGuideMarkdown.md"
+					>Editor Guide</Nav.Link>
 
                     {
                         localStorage.getItem('sessionToken') !== null &&
