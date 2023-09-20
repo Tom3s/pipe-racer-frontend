@@ -291,7 +291,7 @@ export const TrackPage = () => {
 									Back
 								</Button>
 							</div>
-							<h2>by: {track?.author.username}</h2>
+							<h2>by: <a onClick={() => navigate("/profile?id=" + track?.author._id)}>{track?.author.username}</a></h2>
 							<hr />
 							<div style={{
 								display: "flex",

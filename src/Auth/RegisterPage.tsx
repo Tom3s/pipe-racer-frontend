@@ -24,7 +24,7 @@ export const RegisterPage = () => {
 
 	const validatePassword = (): boolean => {
 		// one uppercase, one lowercase, and one special character
-		const regex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*[\d@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
+		const regex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*[\d@$!%*#?&._-,])[A-Za-z\d@$!%*#?&._-,]{8,}$/;
 		return regex.test(password);
 	}
 
@@ -124,7 +124,7 @@ export const RegisterPage = () => {
 			password,
 			!validPassword,
 			password != "" && validPassword,
-			"Password must be at least 8 characters long and contain at least one uppercase, one lowercase, and one special character.",
+			"Password must be at least 8 characters long and contain at least one uppercase, one lowercase, and one special character/number.",
 			"password"
 		)
 	}
