@@ -140,6 +140,8 @@ export const ProfilePage = () => {
 				borderRadius: "10px",
 			}}>
 				<h3>Stats</h3>
+				<p>Global Rank: {userStats?.globalScore?.globalRank}</p>
+				<p>Global Score: {userStats?.globalScore?.score}</p>
 				<p>Total Playtime: {getHours(userStats.totalPlaytime)}</p>
 				<hr />
 				<p>Ingame Playtime: {getHours(userStats.ingamePlaytime)}</p>
