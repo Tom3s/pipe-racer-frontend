@@ -11,6 +11,7 @@ import { TrackList } from './Track/TrackList';
 import { TrackPage } from './Track/TrackPage';
 import { NavigationBar } from './Elements/NavigationBar';
 import { ConfirmPage } from './User/ConfirmPage';
+import { RankList } from './User/RankList';
 
 function App() {
 	return (
@@ -25,6 +26,7 @@ function App() {
 				<Route path='/tracks' element={<TrackList />} /> 
 				<Route path='/track' element={<TrackPage />} />
 				<Route path='/confirm' element={<ConfirmPage />} /> 
+				<Route path='/ranks' element={<RankList />} />
 			</Routes>
 			<Background />
 		</BrowserRouter>

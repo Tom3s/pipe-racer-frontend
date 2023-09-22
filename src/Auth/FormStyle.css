@@ -3,7 +3,7 @@
 
 .form_div {
 	  width: 30vw;
-  height: 100vh;
+  height: fit-content;
   margin: auto;
   min-width: 500px;
   background-color: #000000aa;

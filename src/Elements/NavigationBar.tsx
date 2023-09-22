@@ -48,6 +48,8 @@ export const NavigationBar = () => {
 					<Nav.Link 
 					href="https://github.com/Tom3s/pipe-racer-frontend/blob/main/src/StaticPages/EditorGuideMarkdown.md"
 					>Editor Guide</Nav.Link>
+					
+					<Nav.Link onClick={() => navigate("/ranks")}>Ranks</Nav.Link>
 
                     {
                         localStorage.getItem('sessionToken') !== null &&
