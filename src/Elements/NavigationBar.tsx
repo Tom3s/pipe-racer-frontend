@@ -1,13 +1,37 @@
-import { Fragment } from "react"
+import { Fragment, useEffect, useState } from "react"
 import { Button, ButtonGroup, Container, Nav, Navbar } from "react-bootstrap"
 // import UserDetailsOffCanvas from "./userDetails"
 import { useNavigate } from "react-router-dom"
 import { destroyLocalSessionDetails } from "../Global/SessionManager";
 import { Title } from "./Title";
+import { isWindows, osName } from "react-device-detect";
 
 export const NavigationBar = () => {
 
     const navigate = useNavigate();
+
+	const defaultDownloadLink = "https://github.com/Tom3s/pipe-racer/releases/latest/download/PipeRacer.exe";
+	const linuxDownloadLink = "https://github.com/Tom3s/pipe-racer/releases/latest/download/PipeRacer.x86_64";
+	const macOsDownloadLink = defaultDownloadLink;
+	const [downloadLink, setDownloadLink] = useState(defaultDownloadLink);
+
+	useEffect(() => {
+		const os = osName;
+		switch (os) {
+			case "Windows":
+				setDownloadLink(defaultDownloadLink);
+				break;
+			case "Linux":
+				setDownloadLink(linuxDownloadLink);
+				break;
+			case "Mac OS":
+				setDownloadLink(macOsDownloadLink);
+				break;
+			default:
+				setDownloadLink(defaultDownloadLink);
+				break;
+		}
+	}, []);
 
     return (
         <Fragment>
@@ -29,7 +53,7 @@ export const NavigationBar = () => {
 						width: "40px",
 						height: "40px",
 					}}
-					href="https://github.com/Tom3s/pipe-racer/releases/latest/download/PipeRacer.exe"
+					href={downloadLink}
 					><i className="fa fa-download" /></Button>
 					<Button variant="dark"
 					style={{
