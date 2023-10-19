@@ -47,7 +47,7 @@ export const TrackList = () => {
 								<td>
 									<a onClick={() => navigate("/profile?id=" + track.author._id)}>{track.author.username}</a>
 								</td>
-								<td>{track.rating}</td>
+								<td>{track.rating?.toFixed(2)}</td>
 								<td>{track.downloads}</td>
 								<td>{track.uploadDate.split('T')[0]}</td>
 							</tr>

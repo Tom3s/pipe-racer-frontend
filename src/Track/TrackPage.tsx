@@ -299,7 +299,7 @@ export const TrackPage = () => {
 								flexDirection: "row",
 								justifyContent: "space-between",
 							}}>
-								<span>Rating: {track?.rating}/5 - Downloads: {track?.downloads}</span>
+								<span>Rating: {track?.rating?.toFixed(2)}/5 - Downloads: {track?.downloads}</span>
 								<span>Uploaded: {track?.uploadDate.split('T')[0]}</span>
 							</div>
 							<hr />
