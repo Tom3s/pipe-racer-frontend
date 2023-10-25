@@ -7,7 +7,6 @@ import { Title } from "./Title";
 import { isWindows, osName } from "react-device-detect";
 
 export const NavigationBar = () => {
-
     const navigate = useNavigate();
 
 	const defaultDownloadLink = "https://github.com/Tom3s/pipe-racer/releases/latest/download/PipeRacer.exe";

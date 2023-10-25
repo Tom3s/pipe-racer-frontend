@@ -3,8 +3,11 @@ import '../Auth/FormStyle.css'
 import { Table } from 'react-bootstrap';
 import { SORTED_TRACKS_URL, TRACKS_URL } from '../Global/UrlBuilder';
 import { Navigate, useNavigate } from 'react-router-dom';
+import { refreshSessionDetails } from '../Global/SessionManager';
 
 export const TrackList = () => {
+
+	refreshSessionDetails();
 
 	const navigate = useNavigate();
 

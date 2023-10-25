@@ -3,8 +3,11 @@ import { LEADERBOARD_LAPS_URL, LEADERBOARD_URL, RATE_URL, TRACKS_URL } from "../
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { Button, Form, Table, ToggleButton, ToggleButtonGroup } from "react-bootstrap";
 import { timeStringFromTicks } from "../Global/TimeStringFromTicks";
+import { refreshSessionDetails } from "../Global/SessionManager";
 
 export const TrackPage = () => {
+
+	refreshSessionDetails();
 
 	const navigate = useNavigate();
 

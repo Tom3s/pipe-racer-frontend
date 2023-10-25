@@ -2,8 +2,11 @@ import { Fragment, useEffect, useState } from "react";
 import { Navigate, useLocation, useNavigate, useSearchParams } from "react-router-dom";
 import { PROFILE_PICTURE_URL, UPLOAD_PROFILE_PICTURE_URL, USER_STATS_URL, USER_URL } from "../Global/UrlBuilder";
 import { Button, Form, Image, InputGroup } from "react-bootstrap";
+import { refreshSessionDetails } from "../Global/SessionManager";
 
 export const ProfilePage = () => {
+
+	refreshSessionDetails();
 
 	const navigate = useNavigate();
 

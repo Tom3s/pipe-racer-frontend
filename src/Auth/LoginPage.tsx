@@ -20,9 +20,11 @@ export const LoginPage = () => {
 	const [responseError, setResponseError] = useState("");
 	const [userDetails, setUserDetails] = useState({} as any);
 	const [redirect, setRedirect] = useState(<Fragment />);
+	const [rememberMe, setRememberMe] = useState(false);
 
 	const onChangeUsername = (event: any) => { setUsername(event.target.value); };
 	const onChangePassword = (event: any) => { setPassword(event.target.value); };
+	const onChangeRememberMe = (event: any) => { setRememberMe(event.target.checked); };
 
 	function handleSubmit(event: any) {
 		event.preventDefault();
@@ -42,7 +44,7 @@ export const LoginPage = () => {
 			.then(async (res) => {
 				if (res.status === 200) {
 					setSuccessfulLogin(true);
-					setSessionDetails(await res.json());
+					setSessionDetails({...(await res.json()), "password": password, "rememberMe": String(rememberMe)});
 					return;
 				}
 				setResponseError(await res.text());
@@ -86,7 +88,14 @@ export const LoginPage = () => {
 								</Form.Control.Feedback>
 							</InputGroup>
 						</Form.Group>
+						<Form.Group as={Row} controlId="formCheckbox">
+							<InputGroup>
+								<Form.Check type="checkbox" onChange={onChangeRememberMe}/>
+								<Form.Label style={{marginLeft: "5px"}}>Remember Me</Form.Label>
+							</InputGroup>
+						</Form.Group>
 						<div style={{ display: "flex", flexDirection: "row", justifyContent: "space-between", marginTop: "10px" }}>
+
 							<a onClick={() => navigate("/register")}>Don't have an account?</a>
 							<Button variant="dark" type="submit">
 								Login

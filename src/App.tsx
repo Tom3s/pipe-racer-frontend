@@ -12,8 +12,12 @@ import { TrackPage } from './Track/TrackPage';
 import { NavigationBar } from './Elements/NavigationBar';
 import { ConfirmPage } from './User/ConfirmPage';
 import { RankList } from './User/RankList';
+import { refreshSessionDetails } from './Global/SessionManager';
 
 function App() {
+
+	refreshSessionDetails();
+
 	return (
 		<BrowserRouter >
 			<NavigationBar />
