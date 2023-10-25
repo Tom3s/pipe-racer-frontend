@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import '../Auth/FormStyle.css'
 import { Table } from 'react-bootstrap';
-import { TRACKS_URL } from '../Global/UrlBuilder';
+import { SORTED_TRACKS_URL, TRACKS_URL } from '../Global/UrlBuilder';
 import { Navigate, useNavigate } from 'react-router-dom';
 
 export const TrackList = () => {
@@ -10,6 +10,9 @@ export const TrackList = () => {
 
 	const [trackList, setTrackList] = useState([] as any);
 	const [loading, setLoading] = useState(true);
+
+	// localStorage.setItem("trackSortDirection", "1");
+	// const currentSortDirection
 
 	useEffect(() => {
 		fetch(TRACKS_URL())
@@ -20,6 +23,38 @@ export const TrackList = () => {
 		});
 	}, []);
 
+	function flipSortDirection() {
+		const currentSortDirection = localStorage.getItem("trackSortDirection");
+		const newSortDirection = currentSortDirection == "1" ? "-1" : "1";
+		console.log(newSortDirection);
+		localStorage.setItem("trackSortDirection", newSortDirection);
+		return newSortDirection;
+	}
+
+	function getDirection() {
+		localStorage.setItem("trackSortDirection", "1");
+		return "1";
+	}
+
+	function sortList(field: string) {
+		const sortDirection = localStorage.getItem("trackSortField") == field ? flipSortDirection() : getDirection();
+		localStorage.setItem("trackSortField", field);
+		fetch(SORTED_TRACKS_URL(field, sortDirection))
+		.then(response => response.json())
+		.then(data => {
+			setTrackList(data);
+			setLoading(false);
+		});
+	}
+
+	function getSortArrow(field: string) {
+		if (field != localStorage.getItem("trackSortField")) {
+			return " ";
+		}
+		const sortDirection = localStorage.getItem("trackSortDirection");
+		return sortDirection == "1" ? "▲" : "▼";
+	}
+
 	return (
 		<div className="form_div" style={{
 			width: "80vw",
@@ -29,11 +64,11 @@ export const TrackList = () => {
 				<thead>
 					<tr>
 						<th>#</th>
-						<th>Track Name</th>
-						<th>Author</th>
-						<th>Rating</th>
-						<th>Downloads</th>
-						<th>Upload Date</th>
+						<th style={{cursor: "pointer"}} onClick={() => sortList("name")}>Track Name  {getSortArrow("name")}</th>
+						<th style={{cursor: "pointer"}} onClick={() => sortList("author")}>Author  {getSortArrow("author")}</th>
+						<th style={{cursor: "pointer"}} onClick={() => sortList("rating")}>Rating  {getSortArrow("rating")}</th>
+						<th style={{cursor: "pointer"}} onClick={() => sortList("downloads")}>Downloads  {getSortArrow("downloads")}</th>
+						<th style={{cursor: "pointer"}} onClick={() => sortList("_id")}>Upload Date  {getSortArrow("_id")}</th>
 					</tr>
 				</thead>
 				<tbody>
