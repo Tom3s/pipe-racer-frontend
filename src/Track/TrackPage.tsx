@@ -96,12 +96,35 @@ export const TrackPage = () => {
 						comment.indent = data.find((c: any) => c._id == comment.parentComment)?.indent + 1;
 					}
 				}
-				// console.log(data);
+
+				data = sortComments(data);
+				console.log(data);
 				setComments(data);
 			});
 
 	}, [trackId]);
 
+	function pushAllReplies(parent: any, comments: any[], newArray: any[]) {
+		newArray.push(parent);
+		for (let comment of comments) {
+			if (comment.parentComment == parent._id) {
+				pushAllReplies(comment, comments, newArray);
+			}
+		}	
+	}
+
+	function sortComments(comments: any[]) {
+		const newArray = [] as any[];
+
+		for (let comment of comments) {
+			if (comment.parentComment == null) {
+				pushAllReplies(comment, comments, newArray);
+			}
+		}
+
+		return newArray;
+				
+	}
 	const getTimeLeaderBoard = () => {
 		return (
 			<Table striped bordered hover variant="dark">
