@@ -14,3 +14,5 @@ export const LEADERBOARD_LAPS_URL = (id: string = "") => baseUrl + '/leaderboard
 export const CONFIRM_EMAIL_URL = (token: string) => baseUrl + '/auth/confirm?token=' + token;
 export const RATE_URL = (id: string) => baseUrl + '/ratings/' + id;
 export const USER_STATS_URL = (id: string) => baseUrl + '/stats/user/' + id;
+export const COMMENTS_URL = (id: string) => baseUrl + '/comments/' + id;
+export const SUBMIT_COMMENT_URL = baseUrl + '/comments';

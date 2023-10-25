@@ -1,9 +1,11 @@
 import { Fragment, useEffect, useState } from "react";
-import { LEADERBOARD_LAPS_URL, LEADERBOARD_URL, RATE_URL, TRACKS_URL } from "../Global/UrlBuilder";
+import { COMMENTS_URL, LEADERBOARD_LAPS_URL, LEADERBOARD_URL, RATE_URL, TRACKS_URL } from "../Global/UrlBuilder";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { Button, Form, Table, ToggleButton, ToggleButtonGroup } from "react-bootstrap";
 import { timeStringFromTicks } from "../Global/TimeStringFromTicks";
 import { refreshSessionDetails } from "../Global/SessionManager";
+import { Comment } from "../Elements/Comment";
+import { CommentInput } from "../Elements/CommentInput";
 
 export const TrackPage = () => {
 
@@ -20,6 +22,8 @@ export const TrackPage = () => {
 	const [loadingTrack, setLoadingTrack] = useState(true);
 	const [loadingTimes, setLoadingTimes] = useState(true);
 	const [loadingLaps, setLoadingLaps] = useState(true);
+
+	const [comments, setComments] = useState([] as any);
 
 	const [trackId, setTrackId] = useState(searchParams.get("id") || "");
 
@@ -75,6 +79,26 @@ export const TrackPage = () => {
 				setLoadingLaps(false);
 			});
 
+		fetch(COMMENTS_URL(trackId))
+			.then(async response => {
+				if (response.status !== 200) {
+					setResponseText(await response.text());
+					return;
+				}
+				return response.json();
+			})
+			.then(data => {
+				for (let comment of data) {
+					// console.log(comment);
+					if (comment.parentComment == null) {
+						comment.indent = 0;
+					} else {
+						comment.indent = data.find((c: any) => c._id == comment.parentComment)?.indent + 1;
+					}
+				}
+				// console.log(data);
+				setComments(data);
+			});
 
 	}, [trackId]);
 
@@ -270,6 +294,37 @@ export const TrackPage = () => {
 		)
 	} 
 
+	const getCommentComponent = () => {
+		return (
+			<div>
+				<h3>Comments ({comments.length})</h3>
+				<div style={{
+					display: "flex",
+					flexDirection: "column",					
+				}}>
+					{
+						comments.map((comment: any, index: number) => {
+							return (
+								<Comment 
+									comment={comment.comment} 
+									username={comment.user.username} 
+									userId={comment.user._id}
+									trackId={trackId} 
+									indent={comment.indent} 
+									key={index} 
+								/>
+							)	
+						})
+					}
+					<CommentInput 
+						trackId={trackId}
+						indent={0}
+						parentComment={null}
+					/>
+				</div>
+			</div>
+		)
+	}
 
 	const getMainContent = () => {
 		return (
@@ -324,6 +379,10 @@ export const TrackPage = () => {
 							{
 								localStorage.getItem("userId") !== null &&
 								getRateComponent()
+							}
+							<hr />
+							{
+								getCommentComponent()
 							}
 							
 						</Fragment>
