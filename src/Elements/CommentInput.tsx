@@ -3,7 +3,14 @@ import { Button, Form } from "react-bootstrap";
 import { SUBMIT_COMMENT_URL } from "../Global/UrlBuilder";
 
 export const CommentInput = (props: any) => {
-	const { trackId, indent, parentComment, ...divProps } = props;
+	const { 
+		trackId, 
+		indent, 
+		parentComment, 
+		parentUsername,
+		reply,
+		...divProps 
+	} = props;
 
 	const [comment, setComment] = useState("");
 
@@ -38,9 +45,13 @@ export const CommentInput = (props: any) => {
 	}
 
 	return (
-		<Form style={{}} onSubmit={submitComment}>
+		<Form style={{
+			marginLeft: indent * 20 + "px",
+		}} onSubmit={submitComment}>
 			<Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1" >
-				<Form.Label>Write Comment</Form.Label>
+				<Form.Label>{
+					reply ? "Reply to " + parentUsername : "Write Comment"
+				}</Form.Label>
 				<Form.Control as="textarea" rows={3} placeholder="Comment..." onChange={onChangeComment} />
 				<Button style={{
 					float: "right",

@@ -311,6 +311,8 @@ export const TrackPage = () => {
 									userId={comment.user._id}
 									trackId={trackId} 
 									indent={comment.indent} 
+									rating={comment.rating}
+									id={comment._id}
 									key={index} 
 								/>
 							)	
