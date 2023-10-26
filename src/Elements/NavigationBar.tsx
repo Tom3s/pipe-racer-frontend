@@ -13,22 +13,26 @@ export const NavigationBar = () => {
 	const linuxDownloadLink = "https://github.com/Tom3s/pipe-racer/releases/latest/download/PipeRacer.x86_64";
 	const macOsDownloadLink = "https://github.com/Tom3s/pipe-racer/releases/latest/download/PipeRacer.zip";
 	const [downloadLink, setDownloadLink] = useState(defaultDownloadLink);
-	// const [os, setOs] = useState(osName);
+	const [os, setOs] = useState(osName);
 
 	useEffect(() => {
 		const os = osName;
 		switch (os) {
 			case "Windows":
 				setDownloadLink(defaultDownloadLink);
+				// setOs(os);
 				break;
 			case "Linux":
 				setDownloadLink(linuxDownloadLink);
+				// setOs(os);
 				break;
 			case "Mac OS":
 				setDownloadLink(macOsDownloadLink);
+				// setOs(os);
 				break;
 			default:
 				setDownloadLink(defaultDownloadLink);
+				setOs("Windows")
 				break;
 		}
 	}, []);
@@ -54,7 +58,7 @@ export const NavigationBar = () => {
 						height: "40px",
 					}}
 					href={downloadLink}
-					><span style={{fontSize: "15px"}}>{osName} </span><i className="fa fa-download" /></Button>
+					><span style={{fontSize: "15px"}}>{os} </span><i className="fa fa-download" /></Button>
 					<Button variant="dark"
 					style={{
 						marginRight: "10px",
