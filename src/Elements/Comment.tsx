@@ -1,5 +1,5 @@
 import { Fragment, useState } from "react";
-import { COMMENTS_URL, PROFILE_PICTURE_URL } from "../Global/UrlBuilder";
+import { COMMENTS_URL, PROFILE_PICTURE_URL, RATE_COMMENT_URL } from "../Global/UrlBuilder";
 import { Button } from "react-bootstrap";
 import { CommentInput } from "./CommentInput";
 
@@ -16,6 +16,7 @@ export function Comment(props: any): JSX.Element {
 	} = props;
 
 	const [reply, setReply] = useState(false);
+	const [ratingValue, setRatingValue] = useState(rating);
 
 	function changeReply() {
 		setReply(!reply);
@@ -42,6 +43,28 @@ export function Comment(props: any): JSX.Element {
 					alert(await res.text());
 				});
 		}
+	}
+
+	function submitRating(newRating: number) {
+		fetch(RATE_COMMENT_URL(id), {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+				"Session-Token": localStorage.getItem("sessionToken") || ""
+			},
+			body: JSON.stringify({
+				"rating": newRating
+			})
+		})
+			.then(async (res) => {
+				if (res.status === 200) {
+					// alert("Rating submitted!");
+					// window.location.reload();
+					setRatingValue((await res.json())?.rating);
+					return;
+				}
+				alert(await res.text());
+			});
 	}
 
 	return (
@@ -83,14 +106,19 @@ export function Comment(props: any): JSX.Element {
 					flexDirection: "row",
 					justifyContent: "flex-end",
 				}}>
-					<span style={{ marginTop: "5px" }}>Rating: {rating}</span>
-					<Button style={{ marginLeft: "10px" }} variant="success"> +1 </Button>
-					<Button style={{ marginLeft: "10px" }} variant="danger"> Disagree </Button>
-					<Button
-						style={{ marginLeft: "10px" }}
-						variant="light"
-						onClick={changeReply}
-					> Reply</Button>
+					<span style={{ marginTop: "5px" }}>Rating: {ratingValue}</span>
+					{
+						localStorage.getItem("userId") !== null &&
+						<Fragment>
+							<Button style={{ marginLeft: "10px" }} onClick={() => submitRating(1)} variant="success"> +1 </Button>
+							<Button style={{ marginLeft: "10px" }} onClick={() => submitRating(-1)} variant="danger"> Disagree </Button>
+							<Button
+								style={{ marginLeft: "10px" }}
+								variant="light"
+								onClick={changeReply}
+							> Reply</Button>
+						</Fragment>
+					}
 				</div>
 			</div>
 			{reply &&

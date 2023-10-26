@@ -16,3 +16,4 @@ export const RATE_URL = (id: string) => baseUrl + '/ratings/' + id;
 export const USER_STATS_URL = (id: string) => baseUrl + '/stats/user/' + id;
 export const COMMENTS_URL = (id: string) => baseUrl + '/comments/' + id;
 export const SUBMIT_COMMENT_URL = baseUrl + '/comments';
+export const RATE_COMMENT_URL = (id: string) => baseUrl + '/comments/rate/' + id;
