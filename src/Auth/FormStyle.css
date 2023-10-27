@@ -5,10 +5,18 @@
 	/* width: 30vw; */
 	width: 80vw;
 	height: fit-content;
+	min-height: max-content;
 	margin: auto;
 	/* min-width: 500px; */
 	background-color: #000000aa;
 	box-shadow: 0 0 30px 30px #00000077;
 	padding: 20px;
 	color: whitesmoke;
+}
+
+@media (max-width: 800px) {
+	.form_div {
+		width: 100%;
+		margin: 0;
+	}
 }

@@ -22,10 +22,10 @@ export const RankList = () => {
 
 	return (
 		<div className="form_div" style={{
-			width: "80vw",
+			// width: "80vw",
 		}}>
 			<h1>RankList</h1>
-			<Table striped bordered hover variant="dark">
+			<Table striped bordered hover variant="dark" responsive="sm">
 				<thead>
 					<tr>
 						<th>#</th>

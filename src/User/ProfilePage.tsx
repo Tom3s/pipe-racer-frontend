@@ -175,12 +175,7 @@ export const ProfilePage = () => {
 						<Fragment /> :
 						found ?
 							<Fragment>
-								<Image src={profilePictureUrl} style={{
-									width: "200px",
-									height: "200px",
-									borderRadius: "5%",
-									marginBottom: "20px"
-								}} />
+								<Image src={profilePictureUrl} className="profile-pic" />
 
 								<h1>{user.username}{
 									user?.guest &&

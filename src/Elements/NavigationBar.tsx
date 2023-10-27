@@ -51,7 +51,7 @@ export const NavigationBar = () => {
 					<NavbarOffCanvas />
 					{/* <Navbar.Toggle /> */}
 					{/* <Navbar.Brand onClick={() => navigate("/home")}>PIPE RACER</Navbar.Brand> */}
-					<div>
+					<div >
 
 								<Button variant="dark"
 									style={{
@@ -91,7 +91,7 @@ export const NavigationBar = () => {
 					{
 						localStorage.getItem('sessionToken') === null ?
 							<Fragment>
-								<ButtonGroup className="me-2">
+								<ButtonGroup className="me-2 buttons" >
 									<Button variant="dark" onClick={() => navigate("/register")}>Register</Button>
 									<Button variant="dark" onClick={() => navigate("/login")}>Login</Button>
 								</ButtonGroup>

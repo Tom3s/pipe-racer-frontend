@@ -47,8 +47,8 @@ export const Home = () => {
 				flexDirection: "column",
 				justifyContent: "center",
 				alignItems: "center",
-				maxWidth: "90vw",
-				width: "fit-content",
+				// maxWidth: "90vw",
+				// width: "fit-content",
 				// content: "fit-content",
 
 			}}>

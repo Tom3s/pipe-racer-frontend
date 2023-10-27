@@ -59,6 +59,7 @@
 	/* objectFit: "contain", */
 
 }
+
 @media (max-width: 1000px) {
 	.home-image {
 		width: 100%;
@@ -91,4 +92,39 @@
 	text-align: center;
 	word-wrap: break-word;
 	width: 45vw;
+}
+
+@media (max-width: 600px) {
+	table {
+		font-size: xx-small;
+	}
+}
+
+@media (min-width: 600px) and (max-width: 1000px) {
+	table {
+		font-size: small;
+	}
+}
+
+.profile-pic {
+	width: "200px";
+	height: "200px";
+	border-radius: "10px";
+	margin-bottom: "20px";
+}
+
+@media (max-width: 400px) {
+	.profile-pic {
+		width: 70vw;
+		height: auto;
+		border-radius: "10px";
+		margin-bottom: "20px";
+	}
+}
+
+@media (max-width: 500px) {
+	.buttons {
+		width: 90vw;
+		padding: 10px 20%;
+	}
 }
