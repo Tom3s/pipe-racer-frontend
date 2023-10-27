@@ -1,38 +1,130 @@
 .App {
-  text-align: center;
+	text-align: center;
 }
 
 .App-logo {
-  height: 40vmin;
-  pointer-events: none;
+	height: 40vmin;
+	pointer-events: none;
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+	.App-logo {
+		animation: App-logo-spin infinite 20s linear;
+	}
 }
 
 .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+	background-color: #282c34;
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	font-size: calc(10px + 2vmin);
+	color: white;
 }
 
 .App-link {
-  color: #61dafb;
+	color: #61dafb;
 }
 
 @keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+	from {
+		transform: rotate(0deg);
+	}
+
+	to {
+		transform: rotate(360deg);
+	}
+}
+
+.resp-width {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	width: 100vw;
+}
+
+.home-image {
+	/* height: 400px; */
+	/* width: 100%; */
+	/* max-width: 600px;
+	min-width: 300px;
+	width: 35vw; */
+	height: auto;
+	border-radius: 15px;
+	flex-grow: 1;
+	margin-bottom: 20px;
+	/* objectFit: "contain", */
+
+}
+
+@media (max-width: 1000px) {
+	.home-image {
+		width: 100%;
+	}
+}
+
+@media (min-width: 1000px) {
+	.home-image {
+		width: 35vw;
+	}
+}
+
+.home-section {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	margin-bottom: 20px;
+	width: fit-content;
+	padding: 0px 20px;
+	flex-wrap: wrap;
+}
+
+.reverse {
+	flex-direction: row-reverse;
+}
+
+.home-text {
+	flex-grow: 2;
+	text-align: center;
+	word-wrap: break-word;
+	width: 45vw;
+}
+
+@media (max-width: 600px) {
+	table {
+		font-size: xx-small;
+	}
+}
+
+@media (min-width: 600px) and (max-width: 1000px) {
+	table {
+		font-size: small;
+	}
+}
+
+.profile-pic {
+	width: "200px";
+	height: "200px";
+	border-radius: "10px";
+	margin-bottom: "20px";
+}
+
+@media (max-width: 400px) {
+	.profile-pic {
+		width: 70vw;
+		height: auto;
+		border-radius: "10px";
+		margin-bottom: "20px";
+	}
+}
+
+@media (max-width: 500px) {
+	.buttons {
+		width: 90vw;
+		padding: 10px 20%;
+	}
 }

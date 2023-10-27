@@ -111,7 +111,7 @@ export function Comment(props: any): JSX.Element {
 						localStorage.getItem("userId") !== null &&
 						<Fragment>
 							<Button style={{ marginLeft: "10px" }} onClick={() => submitRating(1)} variant="success"> +1 </Button>
-							<Button style={{ marginLeft: "10px" }} onClick={() => submitRating(-1)} variant="danger"> Disagree </Button>
+							<Button style={{ marginLeft: "10px" }} onClick={() => submitRating(-1)} variant="danger"> -1 </Button>
 							<Button
 								style={{ marginLeft: "10px" }}
 								variant="light"

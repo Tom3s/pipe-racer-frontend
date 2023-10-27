@@ -418,7 +418,7 @@ export const TrackPage = () => {
 
 	return (
 		<div className="form_div" style={{
-			width: "80vw",
+			// width: "80vw",
 		}}>
 			{
 				!loadingTimes && !loadingTrack && !loadingLaps ?

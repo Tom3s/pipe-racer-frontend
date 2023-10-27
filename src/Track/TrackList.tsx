@@ -60,17 +60,17 @@ export const TrackList = () => {
 
 	return (
 		<div className="form_div" style={{
-			width: "80vw",
+			// width: "80vw",
 		}}>
 			<h1>TrackList</h1>
-			<Table striped bordered hover variant="dark">
+			<Table striped bordered hover variant="dark" responsive="sm">
 				<thead>
 					<tr>
 						<th>#</th>
 						<th style={{cursor: "pointer"}} onClick={() => sortList("name")}>Track Name  {getSortArrow("name")}</th>
 						<th style={{cursor: "pointer"}} onClick={() => sortList("author")}>Author  {getSortArrow("author")}</th>
 						<th style={{cursor: "pointer"}} onClick={() => sortList("rating")}>Rating  {getSortArrow("rating")}</th>
-						<th style={{cursor: "pointer"}} onClick={() => sortList("downloads")}>Downloads  {getSortArrow("downloads")}</th>
+						<th style={{cursor: "pointer"}} onClick={() => sortList("downloads")}><i className='fa fa-download'/>  {getSortArrow("downloads")}</th>
 						<th style={{cursor: "pointer"}} onClick={() => sortList("_id")}>Upload Date  {getSortArrow("_id")}</th>
 					</tr>
 				</thead>
