@@ -62,7 +62,7 @@ export const TrackList = () => {
 		<div className="form_div" style={{
 			// width: "80vw",
 		}}>
-			<h1>TrackList</h1>
+			<h1>Tracks</h1>
 			<Table striped bordered hover variant="dark" responsive="sm">
 				<thead>
 					<tr>

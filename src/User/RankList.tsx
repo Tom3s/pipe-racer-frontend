@@ -24,7 +24,7 @@ export const RankList = () => {
 		<div className="form_div" style={{
 			// width: "80vw",
 		}}>
-			<h1>RankList</h1>
+			<h1>Global Ranks</h1>
 			<Table striped bordered hover variant="dark" responsive="sm">
 				<thead>
 					<tr>
