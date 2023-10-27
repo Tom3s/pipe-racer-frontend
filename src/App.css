@@ -68,7 +68,7 @@
 
 @media (min-width: 1000px) {
 	.home-image {
-		width: 35vw;
+		width: 28vw;
 	}
 }
 
@@ -91,7 +91,7 @@
 	flex-grow: 2;
 	text-align: center;
 	word-wrap: break-word;
-	width: 45vw;
+	width: 42vw;
 }
 
 @media (max-width: 600px) {
