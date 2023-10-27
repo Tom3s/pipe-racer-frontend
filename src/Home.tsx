@@ -47,7 +47,9 @@ export const Home = () => {
 				flexDirection: "column",
 				justifyContent: "center",
 				alignItems: "center",
+				maxWidth: "90vw",
 				width: "fit-content",
+				// content: "fit-content",
 
 			}}>
 				<Title />
@@ -57,57 +59,29 @@ export const Home = () => {
 					display: "flex",
 					flexDirection: "column",
 				}}>
-					<div style={{
-						display: "flex",
-						flexDirection: "row",
-						justifyContent: "center",
-						alignItems: "center",
-						marginBottom: "20px",
-						width: "",
-					}}>
+					<div className="home-section reverse">
 						<div style={{
-							flexGrow: 2,
-							textAlign: "center",
+							marginLeft: "20px",
 						}}>
+							<img src={ControlsImage} className="home-image" />
+						</div>
+						<div className="home-text">
 							<h1>SIMPLE CONTROLS - HIGH SKILL CEILING</h1>
 							<p>Learn the basics in minutes and enjoy the game for years</p>
 							<p>This high precision racing game will push you to your limits if you want to stay on top</p>
 							<p>There are no gimmicks or tricks, just pure racing for you to enjoy</p>
 
 						</div>
-						<div style={{
-							marginLeft: "20px",
-						}}>
-							<img src={ControlsImage} style={{
-								height: "400px",
-								borderRadius: "15px",
-								flexGrow: 1,
-							}} />
-						</div>
 
 					</div>
 					<hr />
-					<div style={{
-						display: "flex",
-						flexDirection: "row",
-						justifyContent: "center",
-						alignItems: "center",
-						marginBottom: "20px",
-						width: "",
-					}}>
+					<div className="home-section">
 						<div style={{
 							marginRight: "20px",
 						}}>
-							<img src={IngameImage} style={{
-								height: "400px",
-								borderRadius: "15px",
-								flexGrow: 1,
-							}} />
+							<img src={IngameImage} className="home-image" />
 						</div>
-						<div style={{
-							flexGrow: 2,
-							textAlign: "center",
-						}}>
+						<div className="home-text">
 							<h1>PLAY WITH YOUR FRIENDS</h1>
 							<p>Any game can become 110% more fun when you play it with your friends</p>
 							<p>Play together with your buddies in local multiplayer {'('}up to 4 players{')'}<br />
@@ -117,57 +91,29 @@ export const Home = () => {
 
 					</div>
 					<hr />
-					<div style={{
-						display: "flex",
-						flexDirection: "row",
-						justifyContent: "center",
-						alignItems: "center",
-						marginBottom: "20px",
-						width: "",
-					}}>
+					<div className="home-section reverse">
 						<div style={{
-							flexGrow: 2,
-							textAlign: "center",
+							marginLeft: "20px",
 						}}>
+							<img src={LeaderboardImage} className="home-image" />
+						</div>
+						<div className="home-text">
 							<h1>COMPETE TO BECOME #1</h1>
 							<p>Push the car to its limits to achieve record times</p>
 							<p>Compete with other players and rise to the top {'('}Or just play for fun and enjoy the game{')'}</p>
 							<p>The more tracks you conquer, the more points you will gain on the global Leaderboard</p>
 
 						</div>
-						<div style={{
-							marginLeft: "20px",
-						}}>
-							<img src={LeaderboardImage} style={{
-								height: "400px",
-								borderRadius: "15px",
-								flexGrow: 1,
-							}} />
-						</div>
 
 					</div>
 					<hr />
-					<div style={{
-						display: "flex",
-						flexDirection: "row",
-						justifyContent: "center",
-						alignItems: "center",
-						marginBottom: "20px",
-						width: "",
-					}}>
+					<div className="home-section">
 						<div style={{
 							marginRight: "20px",
 						}}>
-							<img src={EditorImage} style={{
-								height: "400px",
-								borderRadius: "15px",
-								flexGrow: 1,
-							}} />
+							<img src={EditorImage} className="home-image" />
 						</div>
-						<div style={{
-							flexGrow: 2,
-							textAlign: "center",
-						}}>
+						<div className="home-text">
 							<h1>BUILD YOUR OWN TRACKS</h1>
 							<p>Use the in-game editor to create your own tracks</p>
 							<p>Let your creativity run wild and create the track of your dreams</p>
@@ -179,14 +125,12 @@ export const Home = () => {
 
 					</div>
 					<hr />
-					<div style={{
-						display: "flex",
-						flexDirection: "row",
-						justifyContent: "center",
-						alignItems: "center",
-						marginBottom: "20px",
-						width: "",
-					}}>
+					<div className="home-section reverse">
+						<div style={{
+							marginLeft: "20px",
+						}}>
+							<img src={CrossplatformImage} className="home-image" />
+						</div>
 						<div style={{
 							flexGrow: 1,
 							textAlign: "center",
@@ -200,26 +144,11 @@ export const Home = () => {
 									marginRight: "10px",
 									fontSize: "22px",
 									padding: "10px 20px",
-									// width: "40px",
-									// height: "40px",
 									borderRadius: "15px",
 								}}
 								href={downloadLink}
 							><span style={{ fontSize: "50px" }}>{os} </span><i className="fa fa-download" style={{ fontSize: "50px" }} /></Button>
 						</div>
-						<div style={{
-							marginLeft: "20px",
-						}}>
-							<img src={CrossplatformImage} style={{
-								height: "400px",
-								width: "800px",
-								// overflow: "hidden",
-								objectFit: "contain",
-								borderRadius: "15px",
-								flexGrow: 1,
-							}} />
-						</div>
-
 					</div>
 				</div>
 			</div>

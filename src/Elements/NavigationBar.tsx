@@ -7,7 +7,7 @@ import { Title } from "./Title";
 import { isWindows, osName } from "react-device-detect";
 
 export const NavigationBar = () => {
-    const navigate = useNavigate();
+	const navigate = useNavigate();
 
 	const defaultDownloadLink = "https://github.com/Tom3s/pipe-racer/releases/latest/download/PipeRacer.exe";
 	const linuxDownloadLink = "https://github.com/Tom3s/pipe-racer/releases/latest/download/PipeRacer.x86_64";
@@ -37,68 +37,68 @@ export const NavigationBar = () => {
 		}
 	}, []);
 
-    return (
-        <Fragment>
-            <Navbar bg="black" variant="dark" sticky="top">
-                <Container>
-                    {/* <UserDetailsOffCanvas /> */}
-                    <Navbar.Brand onClick={() => navigate("/home")}>PIPE RACER</Navbar.Brand>
+	return (
+		<Fragment>
+				<Navbar bg="black" variant="dark" sticky="top" expand="lg" >
+					{/* <div className="resp-width"> */}
+					{/* <UserDetailsOffCanvas /> */}
+					<Navbar.Brand onClick={() => navigate("/home")}>PIPE RACER</Navbar.Brand>
 					<div style={{
 						display: "flex",
 						flexDirection: "row",
 						alignItems: "center",
 						justifyContent: "center",
 					}}>
-					<Button variant="dark"
-					style={{
-						marginRight: "10px",
-						fontSize: "22px",
-						padding: "0px 10px",
-						// width: "40px",
-						height: "40px",
-					}}
-					href={downloadLink}
-					><span style={{fontSize: "15px"}}>{os} </span><i className="fa fa-download" /></Button>
-					<Button variant="dark"
-					style={{
-						marginRight: "10px",
-						fontSize: "22px",
-						padding: "0px",
-						width: "40px",
-						height: "40px",
-					}}
-					href="https://github.com/Tom3s/pipe-racer/releases"
-					><i className="fa fa-github" /></Button>
+						<Button variant="dark"
+							style={{
+								marginRight: "10px",
+								fontSize: "22px",
+								padding: "0px 10px",
+								// width: "40px",
+								height: "40px",
+							}}
+							href={downloadLink}
+						><span style={{ fontSize: "15px" }}>{os} </span><i className="fa fa-download" /></Button>
+						<Button variant="dark"
+							style={{
+								marginRight: "10px",
+								fontSize: "22px",
+								padding: "0px",
+								width: "40px",
+								height: "40px",
+							}}
+							href="https://github.com/Tom3s/pipe-racer/releases"
+						><i className="fa fa-github" /></Button>
 					</div>
-                    <Navbar.Toggle />
+					<Navbar.Toggle />
 
 					<Nav.Link onClick={() => navigate("/tracks")}>Tracks</Nav.Link>
-					<Nav.Link 
-					href="https://github.com/Tom3s/pipe-racer-frontend/blob/main/src/StaticPages/EditorGuideMarkdown.md"
+					<Nav.Link
+						href="https://github.com/Tom3s/pipe-racer-frontend/blob/main/src/StaticPages/EditorGuideMarkdown.md"
 					>Editor Guide</Nav.Link>
-					
+
 					<Nav.Link onClick={() => navigate("/ranks")}>Ranks</Nav.Link>
 
-                    {
-                        localStorage.getItem('sessionToken') !== null &&
-                        <Navbar.Text>
-                            Signed in as: <a onClick={() => navigate("/profile?id=" + localStorage.getItem('userId'))}>{localStorage.getItem('username')}</a>
-                        </Navbar.Text>
-                    }
-                    {
-                        localStorage.getItem('sessionToken') === null ?
-                            <Fragment>
-                                <ButtonGroup className="me-2">
-                                    <Button variant="dark" onClick={() => navigate("/register")}>Register</Button>
-                                    <Button variant="dark" onClick={() => navigate("/login")}>Login</Button>
-                                </ButtonGroup>
-                            </Fragment>
-                            :
-                            <Button variant="dark" onClick={() => { destroyLocalSessionDetails(); navigate("/"); }}>Logout</Button>
+					{
+						localStorage.getItem('sessionToken') !== null &&
+						<Navbar.Text>
+							Signed in as: <a onClick={() => navigate("/profile?id=" + localStorage.getItem('userId'))}>{localStorage.getItem('username')}</a>
+						</Navbar.Text>
+					}
+					{
+						localStorage.getItem('sessionToken') === null ?
+							<Fragment>
+								<ButtonGroup className="me-2">
+									<Button variant="dark" onClick={() => navigate("/register")}>Register</Button>
+									<Button variant="dark" onClick={() => navigate("/login")}>Login</Button>
+								</ButtonGroup>
+							</Fragment>
+							:
+							<Button variant="dark" onClick={() => { destroyLocalSessionDetails(); navigate("/"); }}>Logout</Button>
 
-                    }
-                </Container>
-            </Navbar>
-        </Fragment>
-    )
+					}
+					{/* </div> */}
+				</Navbar>
+		</Fragment>
+	)
 };

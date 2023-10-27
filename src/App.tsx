@@ -14,6 +14,8 @@ import { ConfirmPage } from './User/ConfirmPage';
 import { RankList } from './User/RankList';
 import { refreshSessionDetails } from './Global/SessionManager';
 
+// ($env:HTTPS = "true") -and (npm start)  
+
 function App() {
 
 	refreshSessionDetails();
