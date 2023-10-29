@@ -56,7 +56,7 @@
 	border-radius: 15px;
 	flex-grow: 1;
 	margin-bottom: 20px;
-	/* objectFit: "contain", */
+	/* objectFit: contain, */
 
 }
 
@@ -107,18 +107,18 @@
 }
 
 .profile-pic {
-	width: "200px";
-	height: "200px";
-	border-radius: "10px";
-	margin-bottom: "20px";
+	width: 300px;
+	height: 300px;
+	border-radius: 10px;
+	margin-bottom: 20px;
 }
 
 @media (max-width: 400px) {
 	.profile-pic {
 		width: 70vw;
-		height: auto;
-		border-radius: "10px";
-		margin-bottom: "20px";
+		height: 70vw;
+		border-radius: 10px;
+		margin-bottom: 20px;
 	}
 }
 
