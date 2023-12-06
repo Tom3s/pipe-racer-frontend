@@ -54,7 +54,14 @@ export const Home = () => {
 			}}>
 				<Title />
 				<hr />
-				{/* Under Construction... */}
+				<iframe 
+					style={{
+						width: "60vw",
+						height: "34vw",
+						borderRadius: "15px",
+					}}
+				src="https://www.youtube.com/embed/NL8YSEYDpTk?si=PbO7R7htS_bJw7cL" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"></iframe>
+				<hr />
 				<div style={{
 					display: "flex",
 					flexDirection: "column",
