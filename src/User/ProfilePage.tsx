@@ -16,8 +16,6 @@ export const ProfilePage = () => {
 	const [userId, setUserId] = useState(searchParams.get("id") || "");
 	const [user, setUser] = useState({} as any);
 	const [loading, setLoading] = useState(true);
-	const [selectedFile, setSelectedFile] = useState(null);
-	const [response, setResponse] = useState("");
 	const [profilePictureUrl, setProfilePictureUrl] = useState("");
 	const [userStats, setUserStats] = useState({} as any);
 
@@ -56,65 +54,11 @@ export const ProfilePage = () => {
 		}
 	}, [userId]);
 
-	const handleSubmit = (event: any) => {
-		// setLoading(true);
-		setProfilePictureUrl(PROFILE_PICTURE_URL("def"));
-		event.preventDefault();
-		fetch(UPLOAD_PROFILE_PICTURE_URL,
-			{
-				method: "POST",
-				headers: {
-					"Content-Type": "image/png",
-					"Session-Token": localStorage.getItem("sessionToken") || ""
-				},
-				body: selectedFile
-			}
-		)
-			.then(async (res) => {
-				if (res.status === 200) {
-					setResponse(await res.text());
-					setTimeout(() => {
-						// navigate("/profile?id=" + localStorage.getItem("userId"));
-						window.location.reload();
-					});
-					return;
-				}
-
-				setResponse(await res.text());
-
-			});
-	};
-
-	const handleFileChange = (event: any) => {
-		setSelectedFile(event.target.files[0]);
-	};
-
-	const getProfilePictureUploaders = () => {
-		return (
-			<Form onSubmit={handleSubmit}>
-				<Form.Group controlId="formFileSm" className="mb-3" >
-					<Form.Label>Update Profile Picture</Form.Label>
-					<InputGroup className="mb-3">
-						<Form.Control
-							type="file"
-							size="sm"
-							onChange={handleFileChange} // Handle file selection
-						/>
-						<Button variant="dark" type="submit"> Upload </Button>
-					</InputGroup>
-					<Form.Text muted>
-						{response}
-					</Form.Text>
-
-				</Form.Group>
-			</Form>
-		)
-	};
 
 	const getHours = (minutes: number): string => {
 		const hours = minutes / 60;
 		if (hours <= 10) {
-			return hours.toFixed(2) + " h";
+			return hours.toFixed(0) + " h" + " " + (minutes % 60).toFixed(0) + " m";
 		}
 		return hours.toFixed(0) + " h";
 	}
@@ -141,6 +85,7 @@ export const ProfilePage = () => {
 				backgroundColor: "rgba(255, 255, 255, 0.05)",
 				padding: "10px",
 				borderRadius: "10px",
+				marginTop: "10px",
 			}}>
 				<h3>Stats</h3>
 				<p>Global Rank: {userStats?.globalScore?.globalRank}</p>
@@ -184,7 +129,7 @@ export const ProfilePage = () => {
 
 								{
 									userId === localStorage.getItem("userId") ?
-										getProfilePictureUploaders() :
+										<Button variant="dark" onClick={() => navigate("/editProfile")}>Edit Profile</Button> :
 										<Fragment />
 								}
 
