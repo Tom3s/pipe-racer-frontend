@@ -18,7 +18,9 @@ export const TrackList = () => {
 	// const currentSortDirection
 
 	useEffect(() => {
-		fetch(TRACKS_URL())
+		localStorage.setItem("trackSortField", "rating");
+		localStorage.setItem("trackSortDirection", "-1");
+		fetch(SORTED_TRACKS_URL("rating", "-1"))
 		.then(response => response.json())
 		.then(data => {
 			setTrackList(data);

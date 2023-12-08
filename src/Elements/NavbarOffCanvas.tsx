@@ -41,15 +41,24 @@ export const NavbarOffCanvas = () => {
 
 							{
 								localStorage.getItem('sessionToken') !== null ?
-								<Fragment>
-									Signed in as: <a onClick={() => navigate("/profile?id=" + localStorage.getItem('userId'))}>{localStorage.getItem('username')}</a>
-								</Fragment>
-								:
-								<Fragment>
-									Not signed in
-								</Fragment>
+									<Fragment>
+										Signed in as: <a onClick={() => {
+											handleCloseOffCanvas();
+											navigate("/profile?id=" + localStorage.getItem('userId'))
+										}}>{localStorage.getItem('username')}</a>
+										<br />
+										<a onClick={() => {
+											handleCloseOffCanvas();
+											navigate("/editProfile");
+										}}>Edit Profile</a>
+
+									</Fragment>
+									:
+									<Fragment>
+										Not signed in
+									</Fragment>
 							}
-							
+
 							<hr />
 							<a onClick={() => {
 								handleCloseOffCanvas();
