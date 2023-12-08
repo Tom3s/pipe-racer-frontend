@@ -13,6 +13,7 @@ import { NavigationBar } from './Elements/NavigationBar';
 import { ConfirmPage } from './User/ConfirmPage';
 import { RankList } from './User/RankList';
 import { refreshSessionDetails } from './Global/SessionManager';
+import { ResetPasswordPage } from './Auth/ResetPasswordPage';
 
 // ($env:HTTPS = "true") -and (npm start)  
 
@@ -33,6 +34,7 @@ function App() {
 				<Route path='/track' element={<TrackPage />} />
 				<Route path='/confirm' element={<ConfirmPage />} /> 
 				<Route path='/ranks' element={<RankList />} />
+				<Route path='/resetPassword' element={<ResetPasswordPage />} />
 			</Routes>
 			<Background />
 		</BrowserRouter>

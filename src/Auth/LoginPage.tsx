@@ -44,7 +44,7 @@ export const LoginPage = () => {
 			.then(async (res) => {
 				if (res.status === 200) {
 					setSuccessfulLogin(true);
-					setSessionDetails({...(await res.json()), "password": password, "rememberMe": String(rememberMe)});
+					setSessionDetails({ ...(await res.json()), "password": password, "rememberMe": String(rememberMe) });
 					return;
 				}
 				setResponseError(await res.text());
@@ -90,13 +90,15 @@ export const LoginPage = () => {
 						</Form.Group>
 						<Form.Group as={Row} controlId="formCheckbox">
 							<InputGroup>
-								<Form.Check type="checkbox" onChange={onChangeRememberMe}/>
-								<Form.Label style={{marginLeft: "5px"}}>Remember Me</Form.Label>
+								<Form.Check type="checkbox" onChange={onChangeRememberMe} />
+								<Form.Label style={{ marginLeft: "5px" }}>Remember Me</Form.Label>
 							</InputGroup>
 						</Form.Group>
 						<div style={{ display: "flex", flexDirection: "row", justifyContent: "space-between", marginTop: "10px" }}>
-
-							<a onClick={() => navigate("/register")}>Don't have an account?</a>
+							<div>
+								<a style={{marginRight: "10px"}} onClick={() => navigate("/register")}>Don't have an account?</a>
+								<a onClick={() => navigate("/resetPassword")}>Forgot your password?</a>
+							</div>
 							<Button variant="dark" type="submit">
 								Login
 							</Button>
@@ -123,8 +125,8 @@ export const LoginPage = () => {
 	return (
 		<Fragment>
 			<div className="form_div">
-			<Title />
-			{getForm()}
+				<Title />
+				{getForm()}
 			</div>
 		</Fragment>
 	);
