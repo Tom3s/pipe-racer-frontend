@@ -11,9 +11,9 @@ import { osName } from "react-device-detect"
 
 export const Home = () => {
 
-	const defaultDownloadLink = "https://github.com/Tom3s/pipe-racer/releases/latest/download/PipeRacer.exe";
-	const linuxDownloadLink = "https://github.com/Tom3s/pipe-racer/releases/latest/download/PipeRacer.x86_64";
-	const macOsDownloadLink = "https://github.com/Tom3s/pipe-racer/releases/latest/download/PipeRacer.zip";
+	const defaultDownloadLink = "https://github.com/Tom3s/pipe-racer/releases/latest/download/PipeRacer_win64.zip";
+	const linuxDownloadLink = "https://github.com/Tom3s/pipe-racer/releases/latest/download/PipeRacer_linux.zip";
+	const macOsDownloadLink = "https://github.com/Tom3s/pipe-racer/releases/latest/download/PipeRacer_macOS.zip";
 	const [downloadLink, setDownloadLink] = useState(defaultDownloadLink);
 	const [os, setOs] = useState(osName);
 

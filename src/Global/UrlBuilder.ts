@@ -1,5 +1,22 @@
-const baseUrl = window.location.protocol + '//pipe-racer.pro/api'
-// const baseUrl = 'https://localhost:443/api';
+const getBaseUrl = () => {
+	// check if ./overwrite_backend exists 
+
+	try {
+		const overwriteBackend = require('../overwrite_backend');
+		console.log("Using overwritten backend: " + overwriteBackend.url);
+		return overwriteBackend.url;
+
+	} catch (e) {
+		// console.log(e);
+		console.log("Using default backend");
+		return window.location.protocol + '//pipe-racer.pro/api';
+	}
+}
+
+// const baseUrl = window.location.protocol + '//pipe-racer.pro/api'
+// const baseUrl = 'https://localhost:443/api'; 
+
+const baseUrl = getBaseUrl();
 
 export const LOGIN_URL = baseUrl + '/auth/login';
 export const REGISTER_URL = baseUrl + '/auth/register';
