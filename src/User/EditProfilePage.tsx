@@ -2,6 +2,7 @@ import { Fragment, useEffect, useState } from "react";
 import { Button, Form, InputGroup, Image, Row } from "react-bootstrap";
 import { Navigate, useNavigate } from "react-router-dom";
 import { PROFILE_PICTURE_URL, UPLOAD_PROFILE_PICTURE_URL, USERS_URL } from "../Global/UrlBuilder";
+import { verifyPasswordStrength, verifyUsername } from "./CredentialValidation";
 
 export const EditProfilePage = () => {
 
@@ -11,9 +12,11 @@ export const EditProfilePage = () => {
 	// TODO: Solve email update logic on backend
 	// const [email, setEmail] = useState(""); 
 	const [password, setPassword] = useState("");
+	const [confirmPassword, setConfirmPassword] = useState("");
 
 	const [validUsername, setValidUsername] = useState(false);
 	const [validPassword, setValidPassword] = useState(false);
+	const [validConfirmPassword, setValidConfirmPassword] = useState(false);
 
 	const [selectedFile, setSelectedFile] = useState(null);
 	const [profilePictureUrl, setProfilePictureUrl] = useState("");
@@ -21,17 +24,20 @@ export const EditProfilePage = () => {
 
 	const onChangeUsername = (event: any) => { setUsername(event.target.value); };
 	const onChangePassword = (event: any) => { setPassword(event.target.value); };
+	const onChangeConfirmPassword = (event: any) => { setConfirmPassword(event.target.value); };
 
 	const validatePassword = (): boolean => {
-		// one uppercase, one lowercase, and one special character
-		const regex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*[\d@$!%*#?&._\-,])[A-Za-z\d@$!%*#?&._\-,]{8,}$/;
-		return regex.test(password);
+		return verifyPasswordStrength(password);
+	}
+
+	const validateConfirmPassword = (): boolean => {
+		return password === confirmPassword;
 	}
 
 	const validateUsername = (): boolean => {
-		const regex = /^[a-zA-Z0-9-_.]+$/;
-		return regex.test(username);
+		return verifyUsername(username);
 	}
+
 
 	useEffect(() => {
 		setValidPassword(password == "" || validatePassword());
@@ -40,6 +46,10 @@ export const EditProfilePage = () => {
 	useEffect(() => {
 		setValidUsername(username == "" || validateUsername());
 	}, [username]);
+
+	useEffect(() => {
+		setValidConfirmPassword(confirmPassword == "" || validateConfirmPassword());
+	}, [confirmPassword]);
 
 	const handleSubmitProfilePicture = (event: any) => {
 		// setLoading(true);
@@ -106,6 +116,38 @@ export const EditProfilePage = () => {
 			});
 	}
 
+	const handleSubmitPassword = (event: any) => {
+		event.preventDefault();
+
+		const data = {
+			"password": password
+		}
+
+		fetch(USERS_URL, {
+			method: "PUT",
+			headers: {
+				"Content-Type": "application/json",
+				"Session-Token": localStorage.getItem("sessionToken") || ""
+			},
+			body: JSON.stringify(data)
+		})
+			.then(async (res) => {
+				if (res.status === 200) {
+					setPassword("");
+					setConfirmPassword("");
+					setTimeout(() => {
+						// navigate("/profile?id=" + localStorage.getItem("userId"));
+						window.location.reload();
+					});
+					return;
+				}
+
+				setResponse(await res.text());
+			});
+	
+	}
+
+
 	const getProfilePictureUploaders = () => {
 		return (
 			<Form onSubmit={handleSubmitProfilePicture}>
@@ -168,6 +210,19 @@ export const EditProfilePage = () => {
 		)
 	}
 
+	const getSecondPasswordField = () => {
+		return getField(
+			"Confirm Password",
+			"Confirm Password",
+			onChangeConfirmPassword,
+			confirmPassword,
+			!validConfirmPassword,
+			confirmPassword != "" && validConfirmPassword,
+			"Passwords must match",
+			"password"
+		)
+	}
+
 	const getUsernameForm = () => {
 		return (
 			<Form onSubmit={handleSubmitUsername} style={{display: "flex", flexDirection: "row", alignItems: "flex-end", maxWidth: "500px"}}>
@@ -181,9 +236,14 @@ export const EditProfilePage = () => {
 
 	const getPasswordForm = () => {
 		return (
-			<Form onSubmit={handleSubmitUsername} style={{display: "flex", flexDirection: "row", alignItems: "flex-end", maxWidth: "500px"}}>
-				{getPasswordField()}
-				<Button variant="dark" type="submit">
+			<Form onSubmit={handleSubmitPassword} style={{display: "flex", flexDirection: "row", alignItems: "flex-end", maxWidth: "500px"}}>
+				{/* {getPasswordField()}
+				{getSecondPasswordField()} */}
+				<div style={{display: "flex", flexDirection: "column", alignItems: "flex-end", width: "100%"}}>
+					{getPasswordField()}
+					{getSecondPasswordField()}
+				</div>
+				<Button variant="dark" type="submit" disabled={!validatePassword() || !validateConfirmPassword()}>
 					Update
 				</Button>
 			</Form>

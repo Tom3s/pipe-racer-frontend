@@ -3,6 +3,7 @@ import { useNavigate, useSearchParams } from "react-router-dom";
 import { REGISTER_URL, RESET_PASSWORD_CONFIRM_URL, RESET_PASSWORD_URL } from "../Global/UrlBuilder";
 import { Row, InputGroup, Col, Button, Form } from "react-bootstrap";
 import { Title } from "../Elements/Title";
+import { verifyEmailFormat, verifyPasswordStrength, verifyUsername } from "../User/CredentialValidation";
 
 export const ResetPasswordPage = () => {
 
@@ -24,19 +25,15 @@ export const ResetPasswordPage = () => {
 	const onChangeConfirmPassword = (event: any) => { setConfirmPassword(event.target.value); };
 
 	const validatePassword = (): boolean => {
-		// one uppercase, one lowercase, and one special character
-		const regex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*[\d@$!%*#?&._\-,])[A-Za-z\d@$!%*#?&._\-,]{8,}$/;
-		return regex.test(password);
+		return verifyPasswordStrength(password);
 	}
 
 	const validateUsername = (): boolean => {
-		const regex = /^[a-zA-Z0-9-_.]+$/;
-		return regex.test(username);
+		return verifyUsername(username);
 	}
 
 	const verifyEmailValidity = (email: string): boolean => {
-		const regex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
-		return regex.test(email);
+		return verifyEmailFormat(email);
 	};
 
 	useEffect(() => {
