@@ -9,7 +9,7 @@ const getBaseUrl = () => {
 	} catch (e) {
 		// console.log(e);
 		console.log("Using default backend");
-		return window.location.protocol + '//pipe-racer.pro/api';
+		return window.location.protocol + '//piperacer.mogyidev.com/api';
 	}
 }
 
