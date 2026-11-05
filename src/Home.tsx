@@ -60,7 +60,7 @@ export const Home = () => {
 						height: "34vw",
 						borderRadius: "15px",
 					}}
-				src="https://www.youtube.com/watch?v=U5N8o6A7vyw" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"></iframe>
+				src="https://www.youtube.com/embed/U5N8o6A7vyw" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"></iframe>
 				<hr />
 				<div style={{
 					display: "flex",
