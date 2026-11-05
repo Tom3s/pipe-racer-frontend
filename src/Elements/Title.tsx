@@ -7,7 +7,7 @@ export const Title = () => {
 				textAlign: "center",
 				// WebkitTextStroke: "5px black",
 				// WebkitTextFillColor: "white",
-				}}>PIPE RACER</span>
+				}}>PACE WARP</span>
 		</div>
 	)
 }

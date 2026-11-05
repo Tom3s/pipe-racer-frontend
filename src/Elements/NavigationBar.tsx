@@ -10,8 +10,8 @@ import { NavbarOffCanvas } from "./NavbarOffCanvas";
 export const NavigationBar = () => {
 	const navigate = useNavigate();
 
-	const defaultDownloadLink = "https://github.com/Tom3s/pipe-racer/releases/latest/download/PipeRacer_win64.zip";
-	const linuxDownloadLink = "https://github.com/Tom3s/pipe-racer/releases/latest/download/PipeRacer_linux.zip";
+	const defaultDownloadLink = "https://github.com/Tom3s/pipe-racer-bugtracker/releases/latest/download/PaceWarp_win64.zip";
+	const linuxDownloadLink = "https://github.com/Tom3s/pipe-racer-bugtracker/releases/latest/download/PaceWarp_linux.zip";
 	const macOsDownloadLink = "https://github.com/Tom3s/pipe-racer/releases/latest/download/PipeRacer_macOS.zip";
 	const [downloadLink, setDownloadLink] = useState(defaultDownloadLink);
 	const [os, setOs] = useState(osName);
@@ -71,7 +71,7 @@ export const NavigationBar = () => {
 										width: "40px",
 										height: "40px",
 									}}
-									href="https://github.com/Tom3s/pipe-racer/releases"
+									href="https://github.com/Tom3s/pipe-racer-bugtracker"
 								><i className="fa fa-github" /></Button>
 							</div>
 

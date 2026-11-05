@@ -11,8 +11,8 @@ import { osName } from "react-device-detect"
 
 export const Home = () => {
 
-	const defaultDownloadLink = "https://github.com/Tom3s/pipe-racer/releases/latest/download/PipeRacer_win64.zip";
-	const linuxDownloadLink = "https://github.com/Tom3s/pipe-racer/releases/latest/download/PipeRacer_linux.zip";
+	const defaultDownloadLink = "https://github.com/Tom3s/pipe-racer-bugtracker/releases/latest/download/PaceWarp_win64.zip";
+	const linuxDownloadLink = "https://github.com/Tom3s/pipe-racer-bugtracker/releases/latest/download/PaceWarp_linux.zip";
 	const macOsDownloadLink = "https://github.com/Tom3s/pipe-racer/releases/latest/download/PipeRacer_macOS.zip";
 	const [downloadLink, setDownloadLink] = useState(defaultDownloadLink);
 	const [os, setOs] = useState(osName);
@@ -28,10 +28,10 @@ export const Home = () => {
 				setDownloadLink(linuxDownloadLink);
 				// setOs(os);
 				break;
-			case "Mac OS":
-				setDownloadLink(macOsDownloadLink);
-				// setOs(os);
-				break;
+			// case "Mac OS":
+			// 	setDownloadLink(macOsDownloadLink);
+			// 	// setOs(os);
+			// 	break;
 			default:
 				setDownloadLink(defaultDownloadLink);
 				setOs("Windows")

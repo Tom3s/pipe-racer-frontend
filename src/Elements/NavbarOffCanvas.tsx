@@ -71,7 +71,7 @@ export const NavbarOffCanvas = () => {
 							}}>Tracks</a>
 							<hr />
 							<a
-								href="https://github.com/Tom3s/pipe-racer-frontend/blob/main/src/StaticPages/EditorGuideMarkdown.md"
+								href="https://github.com/Tom3s/pipe-racer-bugtracker/blob/main/EditorGuide/EditorGuide.md"
 							>Editor Guide</a>
 							<hr />
 
